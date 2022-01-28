@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from screens import login_screen
+from windows import login_window
 
 
 def initialize_ui():
@@ -9,8 +9,8 @@ def initialize_ui():
     # The root window is hidden
     root_window.withdraw()
 
-    tk.Label(root_window, text="This is the root window.").pack()
+    tk.Label(root_window, text='This is the root window.').pack()
 
-    login_screen.login_screen(root_window)
+    login_window.login_window(root_window)
 
     root_window.mainloop()
