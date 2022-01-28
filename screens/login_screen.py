@@ -2,6 +2,8 @@ import tkinter
 from tkinter import *
 from tkinter import messagebox
 
+from screens import registration_screen
+
 
 def validate_login(user_name, pass_word):
     print("username entered :", user_name.get())
@@ -25,7 +27,8 @@ def login_screen(root_window):
     # login button
     Button(login_window, text="Login", command=lambda: validate_login(username, password)).grid(row=4, column=0)
     # registration button
-    Button(login_window, text="Register", command=validate_login).grid(row=5, column=0)
+    Button(login_window, text="Register",
+           command=lambda: registration_screen.registration_screen(root_window, login_window)).grid(row=5, column=0)
 
     Button(login_window, text="Return to root window.", command=lambda: change_window(
         login_window, root_window)).grid(row=6, column=0)
