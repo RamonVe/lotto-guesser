@@ -32,8 +32,8 @@ def login_window(root_window):
            command=lambda: registration_window.registration_window(root_window, login_window_instance)).grid(row=5,
                                                                                                              column=0)
 
-    Button(login_window_instance, text='Return to root window.', command=lambda: change_window(
-        login_window_instance, root_window)).grid(row=6, column=0)
+    # Button(login_window_instance, text='Return to root window.', command=lambda: change_window(
+    #     login_window_instance, root_window)).grid(row=6, column=0)
 
     def close():
         if messagebox.askokcancel('Quit', 'Do You Want To Quit?'):
@@ -42,10 +42,10 @@ def login_window(root_window):
     login_window_instance.protocol('WM_DELETE_WINDOW', close)
 
 
-def change_window(login_window_instance, root_window):
-    # remove the other window entirely
-    login_window_instance.destroy()
-
-    # make root_window visible again
-    root_window.iconify()
-    root_window.deiconify()
+# def change_window(login_window_instance, root_window):
+#     # remove the other window entirely
+#     login_window_instance.destroy()
+#
+#     # make root_window visible again
+#     root_window.iconify()
+#     root_window.deiconify()

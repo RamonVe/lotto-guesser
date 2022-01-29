@@ -1,0 +1,164 @@
+Project: randomly assign numbers to items
+
+Dashboard:
+•	Profile
+•	Practice
+•	Custom
+
+Profile:
+
+When a person logs in they will click their profile or create a new profile.
+
+
+•	Name
+•	Age
+•	Location
+
+Inside of the profile the user can click one of two buttons
+•	Practice Past
+•	Test Future
+
+Practice
+
+
+•	This will allow the user to practice with past winning numbers.
+•	There is a timer when they click the start button. This is saved once the person states they have completed the session.
+•	At the end of the session, for each button the user can add what they think the object is
+o	Item
+o	Taste
+o	Smell
+o	Sound
+o	color
+•	Record the horizontal component and vertical component data of the geomagnetic field given by
+o	K-index = horizontal
+o	Bz data = vertical component from NOAA Nasa’s advanced composition explorer (ace) satellite
+	This will be explained later. This can be done last
+•	All of the past games are in the text files
+
+
+The user can pick between the following:
+
+
+•	Powerball
+o	If clicked 6 buttons will appear
+	5 white balls
+	1 red
+•	The 5 white buttons will have 1 random number between 1 - 69
+•	The 1 red button will have 1 random number between 1- 26
+•	Megamillion
+•	If clicked 6 buttons will appear
+	5 white
+	1 gold
+•	The 5 white buttons will have 1 random number between 1 - 70
+•	The 1 gold button will have 1 random number between 1- 25
+•	Lotto america
+•	If clicked 6 buttons will appear
+	5 white
+	1 yellow
+•	The 5 -- buttons will have 1 random number between 1 - 52
+•	The 1 -- button will have 1 random number between 1- 10
+•	Cash 4 life
+•	If clicked 6 buttons will appear
+	5 white
+	1 green
+•	The 5 -- buttons will have 1 random number between 1 - 60
+•	The 1 -- button will have 1 random number between 1- 4
+•	TN cash
+•	If clicked 6 buttons will appear
+	5 white
+	1 gold
+•	The 5 -- buttons will have 1 random number between 1 - 35
+•	The 1 -- button will have 1 random number between 1- 5
+
+Test Future
+
+This will be similar to the practice section, however, instead of picking past games.
+
+Users will be able to pick the game and then decide on the date of the game.
+
+Powerball = Monday, Wednesday and Saturday
+Megamillion = Tuesday and Friday
+Lotto = Wednesday and Saturday
+Cash = everyday
+TN cash = Monday, Wednesday and Friday
+
+Once the future date has been selected and the game, the user will have the option to play for future numbers. The system will have a timer, recording the geomagnetic. At the end of session the user will put in their inputs and depending on the date of the future game, there will be a question asking if they were correct or not - this can be saved so the user can update this later if they were right or not.
+
+List of items:
+gas
+sulfur/boiled egg
+coffee
+peaches
+rain
+fire/burning
+garlic/onion
+bread
+toothpaste
+apple pie
+fresh cookies
+coconut
+male cologne
+tacos
+laundry soap
+rosemary
+hot chocolate
+fried chicken
+air freshener
+popcorn
+chinese food
+french fries
+bleach
+cinnamon
+hamburger
+deodorant
+honey
+fish
+pizza
+pumpkin
+wet dog
+lime
+turkey
+blueberries
+cotton candy
+wine
+butter
+lasagna
+watermelon
+green tea
+strawberries
+bolonge
+gummy candy
+peanut butter
+doughnuts
+marshmallow
+roast
+play-doh
+makeup
+sesame oil
+grass
+coke
+lemon
+vanilla
+alcohol
+cheese
+syrup
+cucumber
+pepper
+finger nail polish
+dirt/mud
+plums
+mom's dressing
+ginger
+skunk
+cigarette smoke
+poop
+stinky sweat
+weed
+cherries
+vicks vapor rub/ icy hot/ tiger balm
+walnuts
+paint
+fresh clothes
+orange
+caramel
+bbq sauce
