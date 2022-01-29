@@ -25,6 +25,15 @@ def load_object(filename):
         print("Error during unpickling object (Possibly unsupported):", ex)
 
 
+def load_users():
+    file_name = open('storage/user_list', 'rb')
+    loaded_file = pickle.load(file_name)
+
+    loaded_user_list = list(loaded_file)
+
+    return loaded_user_list
+
+
 def delete_users():
     new_user_list = []
     with open('storage/user_list', 'wb') as s:
