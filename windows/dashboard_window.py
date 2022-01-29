@@ -1,7 +1,7 @@
-import tkinter
 from entities import user
 from tkinter import *
 from tkinter import messagebox
+import tkinter
 
 
 def dashboard_window(root_window, logged_in_user):
