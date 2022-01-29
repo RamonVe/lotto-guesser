@@ -1,8 +1,8 @@
-import tkinter
 from tkinter import *
 from tkinter import messagebox
 from windows import dashboard_window
 from windows import registration_window
+import tkinter
 
 
 def validate_login(user_name, pass_word, root_window, log_window):
