@@ -6,3 +6,6 @@ class User:
         self.location = location
         self.username = username
         self.password = password
+
+    def first_name(self):
+        return self.first_name
