@@ -1,14 +1,19 @@
 import tkinter
 from tkinter import *
 from tkinter import messagebox
-
+from windows import dashboard_window
 from windows import registration_window
 
 
-def validate_login(user_name, pass_word):
+def validate_login(user_name, pass_word, root_window, log_window):
     print('username entered :', user_name.get())
     print('password entered :', pass_word.get())
+    dashboard(root_window, log_window)
     return
+
+
+def dashboard(root_window, log_window):
+    dashboard_window.dashboard_window(root_window, log_window)
 
 
 def login_window(root_window):
@@ -25,12 +30,13 @@ def login_window(root_window):
     password = StringVar()
     Entry(log_window, textvariable=password, show='*').grid(row=1, column=1)
     # login button
-    Button(log_window, text='Login', command=lambda: validate_login(username, password)).grid(row=4,
-                                                                                                         column=0)
+    Button(log_window, text='Login', command=lambda: validate_login(username, password, root_window, log_window)).grid(
+        row=4,
+        column=0)
     # registration button
     Button(log_window, text='Register',
            command=lambda: registration_window.registration_window(root_window, log_window)).grid(row=5,
-                                                                                                             column=0)
+                                                                                                  column=0)
 
     # Button(log_window, text='Return to root window.', command=lambda: change_window(
     #     log_window, root_window)).grid(row=6, column=0)
@@ -40,7 +46,6 @@ def login_window(root_window):
             root_window.destroy()
 
     log_window.protocol('WM_DELETE_WINDOW', close)
-
 
 # def change_window(log_window, root_window):
 #     # remove the other window entirely
