@@ -17,26 +17,25 @@ def dashboard(root_window, log_window):
 
 
 def login_window(root_window):
-    # window
     log_window = tkinter.Toplevel(root_window)
-    log_window.geometry('400x150')
-    log_window.title('Lotto Guesser')
-    # username label and text entry box
+    log_window.geometry('220x100')
+    log_window.title('Login')
+
     Label(log_window, text='User Name').grid(row=0, column=0)
-    username = StringVar()
-    Entry(log_window, textvariable=username).grid(row=0, column=1)
-    # password label and password entry box
     Label(log_window, text='Password').grid(row=1, column=0)
+
+    username = StringVar()
     password = StringVar()
+
+    Entry(log_window, textvariable=username).grid(row=0, column=1)
     Entry(log_window, textvariable=password, show='*').grid(row=1, column=1)
-    # login button
+
     Button(log_window, text='Login', command=lambda: validate_login(username, password, root_window, log_window)).grid(
         row=4,
         column=0)
-    # registration button
     Button(log_window, text='Register',
-           command=lambda: registration_window.registration_window(root_window, log_window)).grid(row=5,
-                                                                                                  column=0)
+           command=lambda: registration_window.registration_window(root_window, log_window)).grid(row=4,
+                                                                                                  column=1)
 
     # Button(log_window, text='Return to root window.', command=lambda: change_window(
     #     log_window, root_window)).grid(row=6, column=0)
