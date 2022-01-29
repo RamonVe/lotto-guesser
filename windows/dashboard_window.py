@@ -3,8 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 
 
-def dashboard_window(root_window, login_window):
-    login_window.destroy()
+def dashboard_window(root_window):
 
     dash_window = tkinter.Toplevel(root_window)
 

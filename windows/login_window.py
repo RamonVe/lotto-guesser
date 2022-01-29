@@ -8,12 +8,13 @@ import tkinter
 def validate_login(user_name, pass_word, root_window, log_window):
     print('username entered :', user_name.get())
     print('password entered :', pass_word.get())
-    dashboard(root_window, log_window)
+    log_window.destroy()
+    dashboard(root_window)
     return
 
 
-def dashboard(root_window, log_window):
-    dashboard_window.dashboard_window(root_window, log_window)
+def dashboard(root_window):
+    dashboard_window.dashboard_window(root_window)
 
 
 def login_window(root_window):
