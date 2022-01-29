@@ -1,15 +1,16 @@
 from entities import user
-from storage import local_data_utillities
+from storage import local_data_utilities
 from tkinter import *
 from tkinter import messagebox
+from windows import login_window
 import tkinter
 
 
-def registration_window(root_window, login_window):
-    login_window.destroy()
+def registration_window(root_window, log_window):
+    log_window.destroy()
 
     register_window = tkinter.Toplevel(root_window)
-    register_window.geometry('210x180')
+    register_window.geometry('230x180')
     register_window.title('Register')
 
     f_name_label = Label(register_window, text='First Name')
@@ -48,7 +49,9 @@ def registration_window(root_window, login_window):
     pass_word_entry.grid(row=5, column=1)
 
     Button(register_window, text='Submit', width=16, bg='black', fg='white',
-           command=lambda: register(f_name,
+           command=lambda: register(root_window,
+                                    register_window,
+                                    f_name,
                                     l_name,
                                     age,
                                     location,
@@ -62,12 +65,35 @@ def registration_window(root_window, login_window):
     register_window.protocol('WM_DELETE_WINDOW', close)
 
 
-def register(f_name, l_name, age, location, user_name, pass_word):
-    new_user = user.User(first_name=f_name.get(),
-                         last_name=l_name.get(),
-                         age=age.get(),
-                         location=location.get(),
-                         username=user_name.get(),
-                         password=pass_word.get())
+def register(root_window, register_window, f_name, l_name, age, location, user_name, pass_word):
+    first_name_input = f_name.get()
+    last_name_input = l_name.get()
+    age_input = age.get()
+    location_input = location.get()
+    user_name_input = user_name.get()
+    pass_word_input = pass_word.get()
 
-    local_data_utillities.save_object(new_user)
+    new_user = user.User(first_name=first_name_input,
+                         last_name=last_name_input,
+                         age=age_input,
+                         location=location_input,
+                         username=user_name_input,
+                         password=pass_word_input)
+
+    if first_name_input == '' or last_name_input == '' or age_input == '' or location_input == ''\
+            or user_name_input == '' or pass_word_input == '':
+        messagebox.showwarning('Empty Field', 'A field has been left empty!')
+        return
+
+    users = local_data_utilities.load_users()
+
+    for exiting_user in users:
+        if exiting_user.username == user_name.get():
+            messagebox.showwarning('Duplicate Username.', 'The username you entered has already been taken!')
+            return
+
+    local_data_utilities.save_user(new_user)
+    messagebox.showinfo('Success', user_name_input + ' has been successfully registered')
+
+    register_window.destroy()
+    login_window.login_window(root_window)
