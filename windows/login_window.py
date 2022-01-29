@@ -7,16 +7,10 @@ import tkinter
 
 
 def validate_login(user_name, pass_word, root_window, log_window):
-    print('username entered :', user_name.get())
-    print('password entered :', pass_word.get())
+    if user_name.get() == '' and pass_word.get() == '':
+        messagebox.showwarning('Empty Fields!', 'Enter a username and password to log in!')
 
     users = local_data_utilities.load_users()
-
-    for user in users:
-        print(vars(user))
-
-    if user_name.get() == '' and pass_word.get() == '':
-        messagebox.showwarning('Empty Fields', 'Enter a username and password to log in!')
 
     for user in users:
         if user.username == user_name.get():
@@ -53,19 +47,8 @@ def login_window(root_window):
            command=lambda: registration_window.registration_window(root_window, log_window)).grid(row=4,
                                                                                                   column=1)
 
-    # Button(log_window, text='Return to root window.', command=lambda: change_window(
-    #     log_window, root_window)).grid(row=6, column=0)
-
     def close():
         if messagebox.askokcancel('Quit', 'Do You Want To Quit?'):
             root_window.destroy()
 
     log_window.protocol('WM_DELETE_WINDOW', close)
-
-# def change_window(log_window, root_window):
-#     # remove the other window entirely
-#     log_window.destroy()
-#
-#     # make root_window visible again
-#     root_window.iconify()
-#     root_window.deiconify()
