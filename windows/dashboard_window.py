@@ -1,6 +1,6 @@
 from entities import user
 from tkinter import *
-from windows.test_windows import practice_test_window
+from windows.test_windows.practice_test import practice_test_window
 from windows.window_utillities import window_protocol
 import tkinter
 
