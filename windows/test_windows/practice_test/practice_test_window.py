@@ -1,4 +1,5 @@
 from tkinter import *
+from windows import dashboard_window
 from windows.test_windows.practice_test import practice_test_session_input_window
 from windows.window_utillities import window_protocol
 import tkinter
@@ -28,7 +29,8 @@ def practice_test_window(root_window, logged_in_user):
     tn_cash_button = Button(p_test_window, text='TN Cash',
                             command=lambda: tn_cash(root_window, p_test_window, logged_in_user))
 
-    dashboard_button = Button(p_test_window, text='Return To Dashboard')
+    dashboard_button = Button(p_test_window, text='Return To Dashboard',
+                              command=lambda: return_to_dash_board(root_window, p_test_window, logged_in_user))
 
     test_label.grid(row=0, column=1)
     power_ball_button.grid(row=1, column=0)
@@ -66,3 +68,8 @@ def tn_cash(root_window, p_test_window, logged_in_user):
 def practice_test_input(root_window, p_test_window, selected_lottery, logged_in_user):
     p_test_window.destroy()
     practice_test_session_input_window.practice_test_session_input_window(root_window, selected_lottery, logged_in_user)
+
+
+def return_to_dash_board(root_window, p_test_window, logged_in_user):
+    p_test_window.destroy()
+    dashboard_window.dashboard_window(root_window, logged_in_user)
