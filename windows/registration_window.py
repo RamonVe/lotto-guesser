@@ -3,6 +3,7 @@ from storage import local_data_utilities
 from tkinter import *
 from tkinter import messagebox
 from windows import login_window
+from windows.window_utillities import window_protocol
 import tkinter
 
 
@@ -61,11 +62,7 @@ def registration_window(root_window, log_window):
     Button(register_window, text='Return To Login', width=16,
            command=lambda: return_to_login(root_window, register_window)).grid(row=7, column=1)
 
-    def close():
-        if messagebox.askokcancel('Quit Lotto Guesser?', 'Do You Want To Quit?'):
-            root_window.destroy()
-
-    register_window.protocol('WM_DELETE_WINDOW', close)
+    window_protocol.quit_confirmation(root_window, register_window)
 
 
 def register(root_window, register_window, f_name, l_name, age, location, user_name, pass_word):
