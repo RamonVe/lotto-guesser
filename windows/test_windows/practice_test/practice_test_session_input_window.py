@@ -1,31 +1,40 @@
-from entities import user
+from entities import user as u
 from tkinter import *
-from windows.test_windows.test_timer import timer
-from windows.window_utillities import window_protocol
+from windows.test_windows.practice_test import practice_test_session_item_guess_window
+from windows.test_windows.practice_test import past_lottery_randomizer as plr
+from windows.test_windows.test_timer import timer as t
+from windows.window_utillities import window_protocol as wp
 import tkinter
 
 
-def practice_test_session_input_window(root_window, selected_lottery, logged_in_user):
-    p_test_session_input_window = tkinter.Toplevel(root_window)
-    p_test_session_input_window.geometry('918x300')
-    p_test_session_input_window.title(
-        user.User.first_name(logged_in_user) + "'s " + selected_lottery + ' Practice Test Session')
+def practice_input_window(root_window, lottery, user):
+    input_window = tkinter.Toplevel(root_window)
+    input_window.geometry('918x300')
+    first_name = u.User.first_name(user)
+    input_window.title(first_name + "'s " + lottery + ' Practice Test Session')
 
-    timer_frame = LabelFrame(p_test_session_input_window, text='Timer')
-    test_info_frame = LabelFrame(p_test_session_input_window)
-    geomagnetic_frame = LabelFrame(p_test_session_input_window, text='Geomagnetic')
-    input_frame = LabelFrame(p_test_session_input_window, text='Input')
+    timer_frame = LabelFrame(input_window, text='Timer')
+    info_frame = LabelFrame(input_window)
+    geomagnetic_frame = LabelFrame(input_window, text='Geomagnetic')
+    input_frame = LabelFrame(input_window, text='Input')
 
     timer_frame.grid(row=0, column=0, padx=20)
-    test_info_frame.grid(row=0, column=1, padx=20)
+    info_frame.grid(row=0, column=1, padx=20)
     geomagnetic_frame.grid(row=0, column=2, padx=20)
     input_frame.grid(row=1, column=1, padx=20, pady=50)
 
-    timer_label = timer.Timer(timer_frame)
-    timer_label.start()
+    timer = t.Timer(timer_frame)
+    timer.start()
 
-    test_label = Label(test_info_frame,
-                       text='What are the winning numbers for the ' + selected_lottery + ' on 1/29/2022?')
+    random_details = plr.random_lottery_details(lottery)
+    random_date = random_details[0:14]
+    lotto_split = random_details.split(',', 2)
+    second_lotto_split = lotto_split[1].split(' ', 2)
+    winning_numbers = second_lotto_split[0]
+    lottery_details = [lottery, random_date, winning_numbers]
+
+    test_label = Label(info_frame,
+                       text='What were the winning numbers for the ' + lottery + ' on ' + random_date + '?')
     test_label.pack()
 
     geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic')
@@ -43,7 +52,7 @@ def practice_test_session_input_window(root_window, selected_lottery, logged_in_
     fourth_guess = IntVar()
     fifth_guess = IntVar()
 
-    guesses = [fifth_guess, second_guess, third_guess, fourth_guess, fifth_guess]
+    user_input = [first_guess, second_guess, third_guess, fourth_guess, fifth_guess]
 
     first_entry = Entry(input_frame, textvariable=first_guess)
     second_entry = Entry(input_frame, textvariable=second_guess)
@@ -51,7 +60,9 @@ def practice_test_session_input_window(root_window, selected_lottery, logged_in_
     fourth_entry = Entry(input_frame, textvariable=fourth_guess)
     fifth_entry = Entry(input_frame, textvariable=fifth_guess, background='red')
 
-    submit_button = Button(input_frame, text='Submit', command=lambda: submit(timer_label, guesses))
+    submit_button = Button(input_frame, text='Submit',
+                           command=lambda: submit(root_window, input_window, user, lottery_details, timer,
+                                                  user_input))
 
     first_input_label.grid(row=0, column=0)
     second_input_label.grid(row=0, column=1)
@@ -67,11 +78,23 @@ def practice_test_session_input_window(root_window, selected_lottery, logged_in_
 
     submit_button.grid(row=2, column=2, padx=20, pady=20)
 
-    window_protocol.quit_confirmation(root_window, p_test_session_input_window)
+    wp.quit_confirmation(root_window, input_window)
 
 
-def submit(timer_label, guesses):
-    timer_label.stop()
-    print(timer_label.time_as_string)
-    for guess in guesses:
-        print(guess.get())
+def submit(root_window, current_window, logged_in_user, lottery_details, timer, lotto_guess_input):
+    timer.stop()
+
+    time = timer.time
+
+    # Console debug output
+    print(timer.time_as_string)
+    for each_input in lotto_guess_input:
+        print(each_input.get())
+
+    print(lottery_details)
+
+    current_window.destroy()
+
+    practice_test_session_item_guess_window.practice_test_session_item_guess_window(root_window, logged_in_user,
+                                                                                    lottery_details, time,
+                                                                                    lotto_guess_input)
