@@ -49,11 +49,11 @@ def practice_input_window(root_window, lottery, user):
     fourth_input_label = Label(input_frame, text='Ball 4:')
     fifth_input_label = Label(input_frame, text='Ball 5:')
 
-    first_guess = IntVar()
-    second_guess = IntVar()
-    third_guess = IntVar()
-    fourth_guess = IntVar()
-    fifth_guess = IntVar()
+    first_guess = StringVar()
+    second_guess = StringVar()
+    third_guess = StringVar()
+    fourth_guess = StringVar()
+    fifth_guess = StringVar()
 
     user_input = [first_guess, second_guess, third_guess, fourth_guess, fifth_guess]
 
@@ -85,18 +85,21 @@ def practice_input_window(root_window, lottery, user):
     wp.quit_confirmation(root_window, input_window)
 
 
-def submit(root_window, current_window, user, lottery_details, timer, lotto_guess_input):
+def submit(root_window, current_window, user, lottery_details, timer, user_input):
     timer.stop()
 
-    time = timer.time
+    timer = timer.time
 
     # Console debug output
     print(timer.time_as_string)
-    for each_input in lotto_guess_input:
+
+    string_input = []
+    for each_input in user_input:
         print(each_input.get())
+        string_input.append(each_input.get())
 
     print(lottery_details)
 
     current_window.destroy()
 
-    psi.practice_test_session_item_guess_window(root_window, user, lottery_details, time, lotto_guess_input)
+    psi.practice_test_session_item_guess_window(root_window, user, lottery_details, timer, string_input)
