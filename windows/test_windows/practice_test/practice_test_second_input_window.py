@@ -6,15 +6,15 @@ from windows.window_utillities import window_protocol as wp
 
 
 def practice_session_item_guess(root_window, user, lottery_details, time, lotto_guess_input):
-    item_guess_input_window = tkinter.Toplevel(root_window)
-    item_guess_input_window.geometry('918x250')
+    input_window = tkinter.Toplevel(root_window)
+    input_window.geometry('918x250')
     user_first_name = u.User.first_name(user)
-    item_guess_input_window.title(user_first_name + "'s " + lottery_details[0] + ' Ball Item Guess')
+    input_window.title(user_first_name + "'s " + lottery_details[0] + ' Ball Item Guess')
 
-    time_frame = LabelFrame(item_guess_input_window, text='Total Time')
-    test_info_frame = LabelFrame(item_guess_input_window)
-    geomagnetic_frame = LabelFrame(item_guess_input_window, text='Geomagnetic')
-    input_frame = LabelFrame(item_guess_input_window, text='What object is each ball?')
+    time_frame = LabelFrame(input_window, text='Total Time')
+    test_info_frame = LabelFrame(input_window)
+    geomagnetic_frame = LabelFrame(input_window, text='Geomagnetic')
+    input_frame = LabelFrame(input_window, text='What object is each ball?')
 
     time_frame.grid(row=0, column=0, padx=20)
     test_info_frame.grid(row=0, column=1, padx=20)
@@ -80,7 +80,7 @@ def practice_session_item_guess(root_window, user, lottery_details, time, lotto_
 
     submit_button.grid(row=2, column=2, padx=20, pady=20)
 
-    wp.quit_confirmation(root_window, item_guess_input_window)
+    wp.quit_confirmation(root_window, input_window)
 
 
 def submit(time, guesses):
