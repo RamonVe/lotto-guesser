@@ -1,10 +1,10 @@
-import tkinter
 from tkinter import *
 from entities import user as u
 from windows.test_windows.practice_test import practice_test_session_results_window as psr
 from windows.window_utillities import lottery_color as lc
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
+import tkinter
 
 
 def practice_session_item_guess(root_window, user, lottery_details, time, lotto_guess_input):
