@@ -88,9 +88,11 @@ def practice_session_item_guess(root_window, user, lottery_details, time, lotto_
 
 
 def submit(root_window, current_window, user, lottery_details, time, guesses, options):
+
+    # Console debug output
     print(time)
     for guess in guesses:
-        print(guess.get())
+        print(guess)
 
     current_window.destroy()
 
