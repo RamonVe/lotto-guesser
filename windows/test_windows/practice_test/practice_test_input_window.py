@@ -3,6 +3,8 @@ from tkinter import *
 from windows.test_windows.practice_test import practice_test_second_input_window as psi
 from windows.test_windows.practice_test import past_lottery_randomizer as plr
 from windows.test_windows.test_timer import timer as t
+from windows.window_utillities import lottery_color as lc
+from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
 import tkinter
 
@@ -10,6 +12,7 @@ import tkinter
 def practice_input_window(root_window, lottery, user):
     input_window = tkinter.Toplevel(root_window)
     input_window.geometry('918x300')
+    input_window.iconbitmap(wi.window_icon())
     first_name = u.User.first_name(user)
     input_window.title(first_name + "'s " + lottery + ' Practice Test Session')
 
@@ -58,7 +61,7 @@ def practice_input_window(root_window, lottery, user):
     second_entry = Entry(input_frame, textvariable=second_guess)
     third_entry = Entry(input_frame, textvariable=third_guess)
     fourth_entry = Entry(input_frame, textvariable=fourth_guess)
-    fifth_entry = Entry(input_frame, textvariable=fifth_guess, background='red')
+    fifth_entry = Entry(input_frame, textvariable=fifth_guess, foreground='white', background=lc.color(lottery))
 
     submit_button = Button(input_frame, text='Submit',
                            command=lambda: submit(root_window, input_window, user, lottery_details, timer,
@@ -81,7 +84,7 @@ def practice_input_window(root_window, lottery, user):
     wp.quit_confirmation(root_window, input_window)
 
 
-def submit(root_window, current_window, logged_in_user, lottery_details, timer, lotto_guess_input):
+def submit(root_window, current_window, user, lottery_details, timer, lotto_guess_input):
     timer.stop()
 
     time = timer.time
@@ -95,4 +98,4 @@ def submit(root_window, current_window, logged_in_user, lottery_details, timer, 
 
     current_window.destroy()
 
-    psi.practice_test_session_item_guess_window(root_window, logged_in_user, lottery_details, time, lotto_guess_input)
+    psi.practice_test_session_item_guess_window(root_window, user, lottery_details, time, lotto_guess_input)
