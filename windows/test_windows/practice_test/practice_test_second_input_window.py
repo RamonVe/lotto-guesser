@@ -1,6 +1,7 @@
 import tkinter
 from tkinter import *
 from entities import user as u
+from windows.test_windows.practice_test import practice_test_session_results_window as psr
 from windows.window_utillities import lottery_color as lc
 from windows.window_utillities import window_protocol as wp
 
@@ -65,7 +66,9 @@ def practice_session_item_guess(root_window, user, lottery_details, time, lotto_
     fifth_entry = OptionMenu(input_frame, option_five, *options)
     fifth_entry.config(width=6, background=lc.color(lottery_name))
 
-    submit_button = Button(input_frame, text='Submit', command=lambda: submit(time, lotto_guess_input))
+    submit_button = Button(input_frame, text='Submit',
+                           command=lambda: submit(root_window, input_window, user, lottery_details, time,
+                                                  lotto_guess_input, options))
 
     first_input_label.grid(row=0, column=0)
     second_input_label.grid(row=0, column=1)
@@ -84,7 +87,11 @@ def practice_session_item_guess(root_window, user, lottery_details, time, lotto_
     wp.quit_confirmation(root_window, input_window)
 
 
-def submit(time, guesses):
+def submit(root_window, current_window, user, lottery_details, time, guesses, options):
     print(time)
     for guess in guesses:
         print(guess.get())
+
+    current_window.destroy()
+
+    psr.results(root_window, user, lottery_details, time, guesses, options)
