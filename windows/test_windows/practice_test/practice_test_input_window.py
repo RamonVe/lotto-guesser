@@ -102,4 +102,4 @@ def submit(root_window, current_window, user, lottery_details, timer, user_input
 
     current_window.destroy()
 
-    psi.practice_test_session_item_guess_window(root_window, user, lottery_details, timer, string_input)
+    psi.practice_session_item_guess(root_window, user, lottery_details, timer, string_input)

@@ -5,16 +5,16 @@ from windows.window_utillities import lottery_color as lc
 from windows.window_utillities import window_protocol as wp
 
 
-def practice_test_session_item_guess_window(root_window, user, lottery_details, time, lotto_guess_input):
-    p_test_session_item_guess_input_window = tkinter.Toplevel(root_window)
-    p_test_session_item_guess_input_window.geometry('918x250')
+def practice_session_item_guess(root_window, user, lottery_details, time, lotto_guess_input):
+    item_guess_input_window = tkinter.Toplevel(root_window)
+    item_guess_input_window.geometry('918x250')
     user_first_name = u.User.first_name(user)
-    p_test_session_item_guess_input_window.title(user_first_name + "'s " + lottery_details[0] + ' Ball Item Guess')
+    item_guess_input_window.title(user_first_name + "'s " + lottery_details[0] + ' Ball Item Guess')
 
-    time_frame = LabelFrame(p_test_session_item_guess_input_window, text='Total Time')
-    test_info_frame = LabelFrame(p_test_session_item_guess_input_window)
-    geomagnetic_frame = LabelFrame(p_test_session_item_guess_input_window, text='Geomagnetic')
-    input_frame = LabelFrame(p_test_session_item_guess_input_window, text='What object is each ball?')
+    time_frame = LabelFrame(item_guess_input_window, text='Total Time')
+    test_info_frame = LabelFrame(item_guess_input_window)
+    geomagnetic_frame = LabelFrame(item_guess_input_window, text='Geomagnetic')
+    input_frame = LabelFrame(item_guess_input_window, text='What object is each ball?')
 
     time_frame.grid(row=0, column=0, padx=20)
     test_info_frame.grid(row=0, column=1, padx=20)
@@ -80,7 +80,7 @@ def practice_test_session_item_guess_window(root_window, user, lottery_details, 
 
     submit_button.grid(row=2, column=2, padx=20, pady=20)
 
-    wp.quit_confirmation(root_window, p_test_session_item_guess_input_window)
+    wp.quit_confirmation(root_window, item_guess_input_window)
 
 
 def submit(time, guesses):
