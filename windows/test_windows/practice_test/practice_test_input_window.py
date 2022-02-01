@@ -61,7 +61,8 @@ def practice_input_window(root_window, lottery, user):
     second_entry = Entry(input_frame, textvariable=second_guess)
     third_entry = Entry(input_frame, textvariable=third_guess)
     fourth_entry = Entry(input_frame, textvariable=fourth_guess)
-    fifth_entry = Entry(input_frame, textvariable=fifth_guess, foreground='white', background=lc.color(lottery))
+    fifth_entry = Entry(input_frame, textvariable=fifth_guess, foreground=lc.text_color(lottery),
+                        background=lc.color(lottery))
 
     submit_button = Button(input_frame, text='Submit',
                            command=lambda: submit(root_window, input_window, user, lottery_details, timer,
