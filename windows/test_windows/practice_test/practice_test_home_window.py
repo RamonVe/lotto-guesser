@@ -1,6 +1,6 @@
 from tkinter import *
 from windows import dashboard_window as dw
-from windows.test_windows.practice_test import practice_test_session_input_window
+from windows.test_windows.practice_test import practice_test_input_window as pti
 from windows.window_utillities import window_icon
 from windows.window_utillities import window_protocol
 import tkinter
@@ -69,7 +69,7 @@ def tn_cash(root_window, practice_window, logged_in_user):
 
 def practice_test_input(root_window, practice_window, selected_lottery, logged_in_user):
     practice_window.destroy()
-    practice_test_session_input_window.practice_session_input_window(root_window, selected_lottery, logged_in_user)
+    pti.practice_input_window(root_window, selected_lottery, logged_in_user)
 
 
 def dash_board(root_window, practice_window, logged_in_user):
