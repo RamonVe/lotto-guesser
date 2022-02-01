@@ -1,8 +1,8 @@
 from tkinter import *
 from windows import dashboard_window as dw
 from windows.test_windows.practice_test import practice_test_input_window as pti
-from windows.window_utillities import window_icon
-from windows.window_utillities import window_protocol
+from windows.window_utillities import window_icon as wi
+from windows.window_utillities import window_protocol as wp
 import tkinter
 
 
@@ -10,7 +10,7 @@ def practice_test_window(root_window, user):
     practice_window = tkinter.Toplevel(root_window)
     practice_window.geometry('320x150')
     practice_window.title('Practice Test')
-    practice_window.iconbitmap(window_icon.window_icon())
+    practice_window.iconbitmap(wi.window_icon())
 
     test_label = Label(practice_window, text='Select a lottery to practice.')
 
@@ -44,7 +44,7 @@ def practice_test_window(root_window, user):
     tn_cash_button.grid(row=4, column=1)
     dashboard_button.grid(row=5, column=1)
 
-    window_protocol.quit_confirmation(root_window, practice_window)
+    wp.quit_confirmation(root_window, practice_window)
 
 
 def power_ball(root_window, practice_window, user):
