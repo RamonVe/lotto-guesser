@@ -1,6 +1,6 @@
 from entities import user as u
 from tkinter import *
-from windows.test_windows.practice_test import practice_test_session_item_guess_window
+from windows.test_windows.practice_test import practice_test_second_input_window as psi
 from windows.test_windows.practice_test import past_lottery_randomizer as plr
 from windows.test_windows.test_timer import timer as t
 from windows.window_utillities import window_protocol as wp
@@ -95,6 +95,4 @@ def submit(root_window, current_window, logged_in_user, lottery_details, timer, 
 
     current_window.destroy()
 
-    practice_test_session_item_guess_window.practice_test_session_item_guess_window(root_window, logged_in_user,
-                                                                                    lottery_details, time,
-                                                                                    lotto_guess_input)
+    psi.practice_test_session_item_guess_window(root_window, logged_in_user, lottery_details, time, lotto_guess_input)
