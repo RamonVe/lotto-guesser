@@ -9,3 +9,13 @@ def color(lottery):
         return 'green'
     else:
         return 'gold'
+
+
+def text_color(lottery):
+    lottery_color = color(lottery)
+    if lottery_color == 'yellow':
+        return 'black'
+    elif lottery_color == 'gold':
+        return 'black'
+    else:
+        return 'white'
