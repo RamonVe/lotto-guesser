@@ -6,7 +6,7 @@ from windows.window_utillities import window_protocol
 import tkinter
 
 
-def practice_test_window(root_window, logged_in_user):
+def practice_test_window(root_window, user):
     practice_window = tkinter.Toplevel(root_window)
     practice_window.geometry('320x150')
     practice_window.title('Practice Test')
@@ -15,24 +15,24 @@ def practice_test_window(root_window, logged_in_user):
     test_label = Label(practice_window, text='Select a lottery to practice.')
 
     power_ball_button = Button(practice_window, text='Powerball',
-                               command=lambda: power_ball(root_window, practice_window, logged_in_user))
+                               command=lambda: power_ball(root_window, practice_window, user))
 
     empty_space_one = Label(practice_window, text='')
 
     mega_millions_button = Button(practice_window, text='Mega Millions',
-                                  command=lambda: mega_millions(root_window, practice_window, logged_in_user))
+                                  command=lambda: mega_millions(root_window, practice_window, user))
     lotto_america_button = Button(practice_window, text='Lotto America',
-                                  command=lambda: lotto_america(root_window, practice_window, logged_in_user))
+                                  command=lambda: lotto_america(root_window, practice_window, user))
 
     empty_space_two = Label(practice_window, text='')
 
     cash_four_life_button = Button(practice_window, text='Cash 4 Life',
-                                   command=lambda: cash_four_life(root_window, practice_window, logged_in_user))
+                                   command=lambda: cash_four_life(root_window, practice_window, user))
     tn_cash_button = Button(practice_window, text='TN Cash',
-                            command=lambda: tn_cash(root_window, practice_window, logged_in_user))
+                            command=lambda: tn_cash(root_window, practice_window, user))
 
     dashboard_button = Button(practice_window, text='Return To Dashboard',
-                              command=lambda: dash_board(root_window, practice_window, logged_in_user))
+                              command=lambda: dash_board(root_window, practice_window, user))
 
     test_label.grid(row=0, column=1)
     power_ball_button.grid(row=1, column=0)
@@ -47,31 +47,31 @@ def practice_test_window(root_window, logged_in_user):
     window_protocol.quit_confirmation(root_window, practice_window)
 
 
-def power_ball(root_window, practice_window, logged_in_user):
-    practice_test_input(root_window, practice_window, 'Powerball', logged_in_user)
+def power_ball(root_window, practice_window, user):
+    practice_test_input(root_window, practice_window, 'Powerball', user)
 
 
-def mega_millions(root_window, practice_window, logged_in_user):
-    practice_test_input(root_window, practice_window, 'Mega Millions', logged_in_user)
+def mega_millions(root_window, practice_window, user):
+    practice_test_input(root_window, practice_window, 'Mega Millions', user)
 
 
-def lotto_america(root_window, practice_window, logged_in_user):
-    practice_test_input(root_window, practice_window, 'Lotto America', logged_in_user)
+def lotto_america(root_window, practice_window, user):
+    practice_test_input(root_window, practice_window, 'Lotto America', user)
 
 
-def cash_four_life(root_window, practice_window, logged_in_user):
-    practice_test_input(root_window, practice_window, 'Cash 4 Life', logged_in_user)
+def cash_four_life(root_window, practice_window, user):
+    practice_test_input(root_window, practice_window, 'Cash 4 Life', user)
 
 
-def tn_cash(root_window, practice_window, logged_in_user):
-    practice_test_input(root_window, practice_window, 'TN Cash', logged_in_user)
+def tn_cash(root_window, practice_window, user):
+    practice_test_input(root_window, practice_window, 'TN Cash', user)
 
 
-def practice_test_input(root_window, practice_window, selected_lottery, logged_in_user):
+def practice_test_input(root_window, practice_window, selected_lottery, user):
     practice_window.destroy()
-    pti.practice_input_window(root_window, selected_lottery, logged_in_user)
+    pti.practice_input_window(root_window, selected_lottery, user)
 
 
-def dash_board(root_window, practice_window, logged_in_user):
+def dash_board(root_window, practice_window, user):
     practice_window.destroy()
-    dw.dashboard_window(root_window, logged_in_user)
+    dw.dashboard_window(root_window, user)
