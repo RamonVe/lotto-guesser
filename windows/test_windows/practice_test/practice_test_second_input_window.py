@@ -3,15 +3,17 @@ from tkinter import *
 from entities import user as u
 from windows.test_windows.practice_test import practice_test_session_results_window as psr
 from windows.window_utillities import lottery_color as lc
+from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
 
 
 def practice_session_item_guess(root_window, user, lottery_details, time, lotto_guess_input):
     input_window = tkinter.Toplevel(root_window)
     input_window.geometry('918x250')
+    input_window.iconbitmap(wi.window_icon())
     user_first_name = u.User.first_name(user)
     lottery_name = lottery_details[0]
-    input_window.title(user_first_name + "'s " + lottery_name + ' Ball Item Guess')
+    input_window.title(user_first_name + "'s " + lottery_name + ' Practice Test Ball/Item Guess')
 
     time_frame = LabelFrame(input_window, text='Total Time')
     test_info_frame = LabelFrame(input_window)
