@@ -9,7 +9,8 @@ def practice_session_item_guess(root_window, user, lottery_details, time, lotto_
     input_window = tkinter.Toplevel(root_window)
     input_window.geometry('918x250')
     user_first_name = u.User.first_name(user)
-    input_window.title(user_first_name + "'s " + lottery_details[0] + ' Ball Item Guess')
+    lottery_name = lottery_details[0]
+    input_window.title(user_first_name + "'s " + lottery_name + ' Ball Item Guess')
 
     time_frame = LabelFrame(input_window, text='Total Time')
     test_info_frame = LabelFrame(input_window)
