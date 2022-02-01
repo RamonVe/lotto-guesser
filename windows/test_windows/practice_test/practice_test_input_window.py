@@ -88,10 +88,10 @@ def practice_input_window(root_window, lottery, user):
 def submit(root_window, current_window, user, lottery_details, timer, user_input):
     timer.stop()
 
-    timer = timer.time
+    timer = timer.time_as_string
 
     # Console debug output
-    print(timer.time_as_string)
+    print(timer)
 
     string_input = []
     for each_input in user_input:
