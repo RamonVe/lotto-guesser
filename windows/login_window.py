@@ -3,6 +3,7 @@ from tkinter import messagebox
 from storage import local_data_utilities
 from windows import dashboard_window
 from windows import registration_window
+from windows.window_utillities import window_icon
 from windows.window_utillities import window_protocol
 import tkinter
 
@@ -11,6 +12,7 @@ def login_window(root_window):
     log_window = tkinter.Toplevel(root_window)
     log_window.geometry('220x100')
     log_window.title('Login')
+    log_window.iconbitmap(window_icon.window_icon())
 
     Label(log_window, text='User Name').grid(row=0, column=0)
     Label(log_window, text='Password').grid(row=1, column=0)

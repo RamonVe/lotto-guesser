@@ -1,6 +1,7 @@
 from tkinter import *
 from windows import dashboard_window
 from windows.test_windows.practice_test import practice_test_session_input_window
+from windows.window_utillities import window_icon
 from windows.window_utillities import window_protocol
 import tkinter
 
@@ -9,6 +10,7 @@ def practice_test_window(root_window, logged_in_user):
     p_test_window = tkinter.Toplevel(root_window)
     p_test_window.geometry('320x150')
     p_test_window.title('Practice Test')
+    p_test_window.iconbitmap(window_icon.window_icon())
 
     test_label = Label(p_test_window, text='Select a lottery to practice.')
 

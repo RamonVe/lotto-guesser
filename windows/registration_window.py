@@ -3,6 +3,7 @@ from storage import local_data_utilities
 from tkinter import *
 from tkinter import messagebox
 from windows import login_window
+from windows.window_utillities import window_icon
 from windows.window_utillities import window_protocol
 import tkinter
 
@@ -13,6 +14,7 @@ def registration_window(root_window, log_window):
     register_window = tkinter.Toplevel(root_window)
     register_window.geometry('230x180')
     register_window.title('Register')
+    register_window.iconbitmap(window_icon.window_icon())
 
     f_name_label = Label(register_window, text='First Name')
     l_name_label = Label(register_window, text='Last Name')
