@@ -2,7 +2,7 @@ import random as r
 
 
 def random_pair():
-    item_list = open('item_list', 'r').readlines()
+    item_list = open('storage/item_list', 'r').readlines()
 
     random_item_list = r.sample(item_list, len(item_list))
 
