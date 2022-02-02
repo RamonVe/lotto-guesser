@@ -69,7 +69,7 @@ def tn_cash(root_window, practice_window, user):
 
 def practice_test_input(root_window, practice_window, selected_lottery, user):
     practice_window.destroy()
-    pti.practice_input_window(root_window, selected_lottery, user)
+    pti.practice_session_item_guess(root_window, selected_lottery, user)
 
 
 def dash_board(root_window, practice_window, user):
