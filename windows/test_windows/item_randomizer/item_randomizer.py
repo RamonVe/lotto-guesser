@@ -23,6 +23,3 @@ def random_pair():
             break
 
     return random_pairing
-
-
-print(random_pair())
