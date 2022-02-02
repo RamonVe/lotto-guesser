@@ -1,15 +1,28 @@
-import random
+import random as r
 
 
-def random_items():
-    item_list = open('items/item_list', 'r').readlines()
+def random_pair():
+    item_list = open('item_list', 'r').readlines()
 
-    random_one = random.choice(item_list)
-    random_two = random.choice(item_list)
-    random_three = random.choice(item_list)
-    random_four = random.choice(item_list)
-    random_five = random.choice(item_list)
+    random_item_list = r.sample(item_list, len(item_list))
 
-    random_item_list = [random_one, random_two, random_three, random_four, random_five]
+    pure_random_items = []
+    for item in random_item_list:
+        pure_random_items.append(item.strip())
 
-    return random_item_list
+    n = 77
+    number_list = [i + 1 for i in range(n)]
+
+    random_number_list = r.sample(number_list, len(number_list))
+
+    random_pairing = {}
+    for key in random_number_list:
+        for value in pure_random_items:
+            random_pairing[key] = value
+            pure_random_items.remove(value)
+            break
+
+    return random_pairing
+
+
+print(random_pair())
