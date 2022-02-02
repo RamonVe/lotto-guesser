@@ -70,7 +70,7 @@ def practice_session_item_guess(root_window, user, lottery_details, time, lotto_
 
     submit_button = Button(input_frame, text='Submit',
                            command=lambda: submit(root_window, input_window, user, lottery_details, time,
-                                                  lotto_guess_input, options))
+                                                  lotto_guess_input))
 
     first_input_label.grid(row=0, column=0)
     second_input_label.grid(row=0, column=1)
@@ -89,7 +89,7 @@ def practice_session_item_guess(root_window, user, lottery_details, time, lotto_
     wp.quit_confirmation(root_window, input_window)
 
 
-def submit(root_window, current_window, user, lottery_details, time, guesses, options):
+def submit(root_window, current_window, user, lottery_details, time, guesses):
 
     # Console debug output
     print(time)
@@ -98,4 +98,4 @@ def submit(root_window, current_window, user, lottery_details, time, guesses, op
 
     current_window.destroy()
 
-    psr.results(root_window, user, lottery_details, time, guesses, options)
+    psr.session_results(root_window, user, lottery_details, time, guesses)
