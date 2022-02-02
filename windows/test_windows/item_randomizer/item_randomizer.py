@@ -2,7 +2,7 @@ import random
 
 
 def random_items():
-    item_list = open('items/item_list.txt', 'r').readlines()
+    item_list = open('items/item_list', 'r').readlines()
 
     random_one = random.choice(item_list)
     random_two = random.choice(item_list)
