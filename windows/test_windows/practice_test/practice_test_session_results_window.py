@@ -10,7 +10,7 @@ import tkinter
 
 def session_results(root_window, user, lottery_details, winning_numbers, time, item_guess_input):
     results_window = tkinter.Toplevel(root_window)
-    results_window.geometry('1920x1080')
+    results_window.geometry('910x400')
     results_window.title('Practice Test Results')
     results_window.iconbitmap(wi.window_icon())
 
@@ -55,11 +55,11 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     number_four = winning_numbers[3]
     number_five = winning_numbers[4]
 
-    first_input_label = Label(input_frame, text='Ball 1: ' + number_one + '/' + guess_one, background='white')
-    second_input_label = Label(input_frame, text='Ball 2: ' + number_two + '/' + guess_two, background='white')
-    third_input_label = Label(input_frame, text='Ball 3: ' + number_three + '/' + guess_three, background='white')
-    fourth_input_label = Label(input_frame, text='Ball 4: ' + number_four + '/' + guess_four, background='white')
-    fifth_input_label = Label(input_frame, text='Ball 5: ' + number_five + '/' + guess_five,
+    first_input_label = Label(input_frame, text='Ball 1: ' + guess_one, background='white')
+    second_input_label = Label(input_frame, text='Ball 2: ' + guess_two, background='white')
+    third_input_label = Label(input_frame, text='Ball 3: ' + guess_three, background='white')
+    fourth_input_label = Label(input_frame, text='Ball 4: ' + guess_four, background='white')
+    fifth_input_label = Label(input_frame, text='Ball 5: ' + guess_five,
                               background=lc.color(lottery_name),
                               foreground=lc.text_color(lottery_name))
 
