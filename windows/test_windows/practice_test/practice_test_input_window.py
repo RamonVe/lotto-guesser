@@ -12,7 +12,9 @@ import tkinter
 
 def practice_session_item_guess(root_window, selected_lottery, user):
     input_window = tkinter.Toplevel(root_window)
-    input_window.geometry('1920x1080')
+    input_window.geometry('1110x300')
+    input_window.grid_columnconfigure(0, weight=1)
+    input_window.grid_rowconfigure(0, weight=1)
     input_window.iconbitmap(wi.window_icon())
     user_first_name = u.User.first_name(user)
     input_window.title(user_first_name + "'s " + selected_lottery + ' Practice Test Ball/Item Guess')
@@ -35,16 +37,22 @@ def practice_session_item_guess(root_window, selected_lottery, user):
     winning_number_list = winning_numbers.split('-')
 
     test_label = Label(test_info_frame,
-                       text='What were the winning numbers for the ' + selected_lottery + ' on ' + lottery_date + '?')
+                       text='What were the winning numbers for the ' + selected_lottery + ' on ' + lottery_date + '?',
+                       font="Times 12 bold")
 
-    geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic')
+    geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic', font="Times 12 bold")
 
-    first_input_label = Label(input_frame, text='Ball 1: ' + winning_number_list[0], background='white')
-    second_input_label = Label(input_frame, text='Ball 2: ' + winning_number_list[1], background='white')
-    third_input_label = Label(input_frame, text='Ball 3: ' + winning_number_list[2], background='white')
-    fourth_input_label = Label(input_frame, text='Ball 4: ' + winning_number_list[3], background='white')
-    fifth_input_label = Label(input_frame, text='Ball 5: ' + winning_number_list[4],
-                              background=lc.color(selected_lottery), foreground=lc.text_color(selected_lottery))
+    first_input_label = Label(input_frame, text='Ball 1: ', background='white',
+                              font="Times 10 bold")
+    second_input_label = Label(input_frame, text='Ball 2: ', background='white',
+                               font="Times 10 bold")
+    third_input_label = Label(input_frame, text='Ball 3: ', background='white',
+                              font="Times 10 bold")
+    fourth_input_label = Label(input_frame, text='Ball 4: ', background='white',
+                               font="Times 10 bold")
+    fifth_input_label = Label(input_frame, text='Ball 5: ',
+                              background=lc.color(selected_lottery), foreground=lc.text_color(selected_lottery),
+                              font="Times 10 bold")
 
     item_list = open('storage/item_list', 'r').readlines()
     pure_items = []
@@ -75,11 +83,23 @@ def practice_session_item_guess(root_window, selected_lottery, user):
                            command=lambda: submit(root_window, input_window, user, lottery_details, winning_number_list,
                                                   timer, item_predictions))
 
-    time_frame.grid(row=0, column=0, padx=20)
-    test_info_frame.grid(row=0, column=1, padx=20)
-    geomagnetic_frame.grid(row=0, column=2, padx=20)
-    input_frame.grid(row=1, column=1, padx=20, pady=50)
+    time_frame.grid(row=0, column=0, padx=20, sticky=NW)
+    time_frame.grid_rowconfigure(0, weight=1)
+    time_frame.grid_columnconfigure(0, weight=1)
 
+    test_info_frame.grid(row=0, column=1, padx=20, sticky=N)
+    test_info_frame.grid_rowconfigure(0, weight=1)
+    test_info_frame.grid_columnconfigure(1, weight=1)
+
+    geomagnetic_frame.grid(row=0, column=2, padx=20, sticky=NE)
+    geomagnetic_frame.grid_rowconfigure(0, weight=1)
+    geomagnetic_frame.grid_columnconfigure(2, weight=1)
+
+    input_frame.grid(row=1, column=1, padx=20, pady=20, sticky=S)
+    input_frame.grid_rowconfigure(1, weight=1)
+    input_frame.grid_columnconfigure(1, weight=1)
+
+    timer.label.pack()
     test_label.pack()
     geomagnetic_label.pack()
 
