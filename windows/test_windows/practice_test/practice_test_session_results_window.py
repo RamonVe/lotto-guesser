@@ -10,7 +10,7 @@ import tkinter
 
 def session_results(root_window, user, lottery_details, winning_numbers, time, item_guess_input):
     results_window = tkinter.Toplevel(root_window)
-    results_window.geometry('1010x400')
+    results_window.geometry('1200x400')
     results_window.grid_columnconfigure(0, weight=1)
     results_window.grid_rowconfigure(0, weight=1)
     results_window.title('Practice Test Results')
@@ -121,11 +121,11 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     test_label.pack()
     geomagnetic_label.pack()
 
-    first_input_label.grid(row=0, column=0)
-    second_input_label.grid(row=0, column=1)
-    third_input_label.grid(row=0, column=2)
-    fourth_input_label.grid(row=0, column=3)
-    fifth_input_label.grid(row=0, column=4)
+    first_input_label.grid(row=0, column=0, padx=5)
+    second_input_label.grid(row=0, column=1, padx=5)
+    third_input_label.grid(row=0, column=2, padx=5)
+    fourth_input_label.grid(row=0, column=3, padx=5)
+    fifth_input_label.grid(row=0, column=4, padx=5)
 
     first_color_results_label.grid(row=0, column=0, padx=5)
     second_color_results_label.grid(row=0, column=1, padx=5)
@@ -163,7 +163,7 @@ def result_background(user_input, correct_item):
 
 def show_pairings(results_window, pairing_frame, show_results):
     show_results.grid_remove()
-    results_window.geometry('1010x790')
+    results_window.geometry('1200x790')
     pairing_frame.grid(row=4, column=1, padx=20, pady=50)
     return
 
