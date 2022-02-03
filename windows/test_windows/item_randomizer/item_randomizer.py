@@ -18,7 +18,7 @@ def random_pair():
     random_pairing = {}
     for key in random_number_list:
         for value in pure_random_items:
-            random_pairing[key] = value
+            random_pairing[str(key)] = value
             pure_random_items.remove(value)
             break
 
