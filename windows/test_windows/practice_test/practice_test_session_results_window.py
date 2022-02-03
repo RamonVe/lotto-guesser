@@ -10,7 +10,9 @@ import tkinter
 
 def session_results(root_window, user, lottery_details, winning_numbers, time, item_guess_input):
     results_window = tkinter.Toplevel(root_window)
-    results_window.geometry('910x400')
+    results_window.geometry('1010x400')
+    results_window.grid_columnconfigure(0, weight=1)
+    results_window.grid_rowconfigure(0, weight=1)
     results_window.title('Practice Test Results')
     results_window.iconbitmap(wi.window_icon())
 
@@ -23,14 +25,15 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     results_frame = LabelFrame(results_window, text='Results!')
     pairing_frame = LabelFrame(results_window, text='All Pairings')
 
-    time_label = Label(time_frame, text=time, background='white')
+    time_label = Label(time_frame, text=time, background='white', font="Times 12 bold")
 
     lottery_name = lottery_details[0]
     lottery_date = lottery_details[1]
     test_label = Label(test_info_frame,
-                       text='The winning numbers for ' + lottery_name + ' on ' + lottery_date, background='white')
+                       text='The winning numbers for ' + lottery_name + ' on ' + lottery_date, background='white',
+                       font="Times 12 bold")
 
-    geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic', background='white')
+    geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic', background='white', font="Times 12 bold")
 
     guess_one = item_guess_input[0].get()
     guess_two = item_guess_input[1].get()
@@ -44,13 +47,18 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     number_four = winning_numbers[3]
     number_five = winning_numbers[4]
 
-    first_input_label = Label(input_frame, text='Ball 1: ' + number_one + '/' + guess_one, background='white')
-    second_input_label = Label(input_frame, text='Ball 2: ' + number_two + '/' + guess_two, background='white')
-    third_input_label = Label(input_frame, text='Ball 3: ' + number_three + '/' + guess_three, background='white')
-    fourth_input_label = Label(input_frame, text='Ball 4: ' + number_four + '/' + guess_four, background='white')
+    first_input_label = Label(input_frame, text='Ball 1: ' + number_one + '/' + guess_one, background='white',
+                              font="Times 10 bold")
+    second_input_label = Label(input_frame, text='Ball 2: ' + number_two + '/' + guess_two, background='white',
+                               font="Times 10 bold")
+    third_input_label = Label(input_frame, text='Ball 3: ' + number_three + '/' + guess_three, background='white',
+                              font="Times 10 bold")
+    fourth_input_label = Label(input_frame, text='Ball 4: ' + number_four + '/' + guess_four, background='white',
+                               font="Times 10 bold")
     fifth_input_label = Label(input_frame, text='Ball 5: ' + number_five + '/' + guess_five,
                               background=lc.color(lottery_name),
-                              foreground=lc.text_color(lottery_name))
+                              foreground=lc.text_color(lottery_name),
+                              font="Times 10 bold")
 
     random_number_item_pair = ir.random_pair()
     correct_items = correct_item_list(random_number_item_pair, winning_numbers)
@@ -88,11 +96,25 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     pairings_text.config(yscrollcommand=scrollbar.set)
     scrollbar.config(command=pairings_text.yview())
 
-    time_frame.grid(row=0, column=0, padx=20)
-    test_info_frame.grid(row=0, column=1, padx=20)
-    geomagnetic_frame.grid(row=0, column=2, padx=20)
-    input_frame.grid(row=1, column=1, padx=20, pady=20)
-    results_frame.grid(row=2, column=1, padx=20, pady=20)
+    time_frame.grid(row=0, column=0, padx=20, sticky=NW)
+    time_frame.grid_rowconfigure(0, weight=1)
+    time_frame.grid_columnconfigure(0, weight=1)
+
+    test_info_frame.grid(row=0, column=1, padx=20, sticky=N)
+    test_info_frame.grid_rowconfigure(0, weight=1)
+    test_info_frame.grid_columnconfigure(1, weight=1)
+
+    geomagnetic_frame.grid(row=0, column=2, padx=20, sticky=NE)
+    geomagnetic_frame.grid_rowconfigure(0, weight=1)
+    geomagnetic_frame.grid_columnconfigure(2, weight=1)
+
+    input_frame.grid(row=1, column=1, padx=20, pady=20, sticky=NSEW)
+    input_frame.grid_rowconfigure(1, weight=1)
+    input_frame.grid_columnconfigure(1, weight=1)
+
+    results_frame.grid(row=2, column=1, padx=20, pady=20, sticky=S)
+    results_frame.grid_rowconfigure(2, weight=1)
+    results_frame.grid_columnconfigure(1, weight=1)
     pairing_frame.grid_remove()
 
     time_label.pack()
@@ -111,8 +133,8 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     fourth_color_results_label.grid(row=0, column=3, padx=5)
     fifth_color_results_label.grid(row=0, column=4, padx=5)
 
-    dash_button.grid(row=3, column=1, padx=5)
-    show_results.grid(row=4, column=1, padx=5)
+    dash_button.grid(row=3, column=1, pady=5)
+    show_results.grid(row=4, column=1, pady=5)
 
     pairings_text.grid(row=0, column=0)
     scrollbar.grid(row=0, column=2, sticky=NS)
@@ -141,7 +163,7 @@ def result_background(user_input, correct_item):
 
 def show_pairings(results_window, pairing_frame, show_results):
     show_results.grid_remove()
-    results_window.geometry('930x700')
+    results_window.geometry('1010x790')
     pairing_frame.grid(row=4, column=1, padx=20, pady=50)
     return
 
