@@ -78,7 +78,7 @@ def practice_session_item_guess(root_window, selected_lottery, user):
     fourth_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_four, width=20)
     fifth_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_five, width=20)
 
-    item_predictions = [option_one, option_two, option_three, option_four, option_five]
+    item_predictions = [option_one.get(), option_two.get(), option_three.get(), option_four.get(), option_five.get()]
 
     submit_button = Button(input_frame, text='Submit',
                            command=lambda: submit(root_window, input_window, user, lottery_details, winning_number_list,
@@ -111,7 +111,7 @@ def submit(root_window, current_window, user, lottery_details, winning_number_li
     print(time)
 
     for prediction in item_prediction:
-        print(prediction.get())
+        print(prediction)
 
     current_window.destroy()
 
