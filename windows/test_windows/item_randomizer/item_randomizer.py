@@ -13,10 +13,8 @@ def random_pair():
     n = 77
     number_list = [i + 1 for i in range(n)]
 
-    random_number_list = r.sample(number_list, len(number_list))
-
     random_pairing = {}
-    for key in random_number_list:
+    for key in number_list:
         for value in pure_random_items:
             random_pairing[str(key)] = value
             pure_random_items.remove(value)
