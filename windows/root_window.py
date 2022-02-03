@@ -10,6 +10,9 @@ def initialize_ui():
     # The root window is hidden
     root_window.withdraw()
 
+    root_window.grid_rowconfigure(0, weight=1)
+    root_window.grid_columnconfigure(0, weight=1)
+
     root_window.iconbitmap(window_icon.window_icon())
 
     tkinter.Label(root_window, text='This is the root window.').pack()
