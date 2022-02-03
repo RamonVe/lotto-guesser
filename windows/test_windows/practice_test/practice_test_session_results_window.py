@@ -1,5 +1,6 @@
 from tkinter import *
 from entities import user as u
+from windows import dashboard_window as dw
 from windows.test_windows.item_randomizer import item_randomizer as ir
 from windows.window_utillities import lottery_color as lc
 from windows.window_utillities import window_icon as wi
@@ -9,7 +10,7 @@ import tkinter
 
 def session_results(root_window, user, lottery_details, winning_numbers, time, item_guess_input):
     results_window = tkinter.Toplevel(root_window)
-    results_window.geometry('925x500')
+    results_window.geometry('930x500')
     results_window.title('Practice Test Results')
     results_window.iconbitmap(wi.window_icon())
 
@@ -36,10 +37,10 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     lottery_date = lottery_details[1]
 
     test_label = Label(test_info_frame,
-                       text='The winning numbers for ' + lottery_name + ' on ' + lottery_date)
+                       text='The winning numbers for ' + lottery_name + ' on ' + lottery_date, background='white')
     test_label.pack()
 
-    geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic')
+    geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic', background='white')
     geomagnetic_label.pack()
 
     guess_one = item_guess_input[0].get()
@@ -97,9 +98,13 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
                                        background=result_background(guess_four, correct_item_four))
     fifth_color_results_label = Label(results_frame, width=10, background=result_background(guess_five, number_five))
 
+    dash_button = Button(results_window, text='Return to Dashboard',
+                         command=lambda: dash_board(root_window, results_window, user))
+
     show_results = Button(results_window, text='Show ball/item pairings?',
-                          command=lambda: show_pairings(pairing_frame))
-    show_results.grid(row=3, column=1)
+                          command=lambda: show_pairings(results_window, pairing_frame, show_results))
+    dash_button.grid(row=3, column=1, padx=5)
+    show_results.grid(row=4, column=1, padx=5)
 
     keys = list(random_number_item_pair.keys())
     values = list(random_number_item_pair.values())
@@ -147,6 +152,13 @@ def result_background(user_input, correct_item):
         return 'red'
 
 
-def show_pairings(pairing_frame):
+def show_pairings(results_window, pairing_frame, show_results):
+    show_results.grid_remove()
+    results_window.geometry('930x902')
     pairing_frame.grid(row=4, column=1, padx=20, pady=50)
     return
+
+
+def dash_board(root_window, current_window, logged_in_user):
+    current_window.destroy()
+    dw.dashboard_window(root_window, logged_in_user)
