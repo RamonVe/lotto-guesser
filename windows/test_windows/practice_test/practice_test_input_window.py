@@ -12,7 +12,7 @@ import tkinter
 
 def practice_session_item_guess(root_window, selected_lottery, user):
     input_window = tkinter.Toplevel(root_window)
-    input_window.geometry('918x250')
+    input_window.geometry('1020x250')
     input_window.iconbitmap(wi.window_icon())
     user_first_name = u.User.first_name(user)
     input_window.title(user_first_name + "'s " + selected_lottery + ' Practice Test Ball/Item Guess')
@@ -78,7 +78,7 @@ def practice_session_item_guess(root_window, selected_lottery, user):
     fourth_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_four, width=20)
     fifth_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_five, width=20)
 
-    item_predictions = [option_one.get(), option_two.get(), option_three.get(), option_four.get(), option_five.get()]
+    item_predictions = [option_one, option_two, option_three, option_four, option_five]
 
     submit_button = Button(input_frame, text='Submit',
                            command=lambda: submit(root_window, input_window, user, lottery_details, winning_number_list,
