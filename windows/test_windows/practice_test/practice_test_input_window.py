@@ -12,7 +12,7 @@ import tkinter
 
 def practice_session_item_guess(root_window, selected_lottery, user):
     input_window = tkinter.Toplevel(root_window)
-    input_window.geometry('1020x250')
+    input_window.geometry('1920x1080')
     input_window.iconbitmap(wi.window_icon())
     user_first_name = u.User.first_name(user)
     input_window.title(user_first_name + "'s " + selected_lottery + ' Practice Test Ball/Item Guess')
@@ -22,31 +22,22 @@ def practice_session_item_guess(root_window, selected_lottery, user):
     geomagnetic_frame = LabelFrame(input_window, text='Geomagnetic')
     input_frame = LabelFrame(input_window, text='What item is each ball?')
 
-    time_frame.grid(row=0, column=0, padx=20)
-    test_info_frame.grid(row=0, column=1, padx=20)
-    geomagnetic_frame.grid(row=0, column=2, padx=20)
-    input_frame.grid(row=1, column=1, padx=20, pady=50)
-
     timer = t.Timer(time_frame)
     timer.start()
 
     random_lottery = plr.random_lottery_details(selected_lottery)
     lottery_date = random_lottery[0:14]
+    lottery_details = [selected_lottery, lottery_date]
 
     lotto_split = random_lottery.split(',', 2)
     second_lotto_split = lotto_split[1].split(' ', 2)
     winning_numbers = second_lotto_split[0]
-
-    lottery_details = [selected_lottery, lottery_date]
-
     winning_number_list = winning_numbers.split('-')
 
     test_label = Label(test_info_frame,
                        text='What were the winning numbers for the ' + selected_lottery + ' on ' + lottery_date + '?')
-    test_label.pack()
 
     geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic')
-    geomagnetic_label.pack()
 
     first_input_label = Label(input_frame, text='Ball 1: ' + winning_number_list[0], background='white')
     second_input_label = Label(input_frame, text='Ball 2: ' + winning_number_list[1], background='white')
@@ -84,6 +75,14 @@ def practice_session_item_guess(root_window, selected_lottery, user):
                            command=lambda: submit(root_window, input_window, user, lottery_details, winning_number_list,
                                                   timer, item_predictions))
 
+    time_frame.grid(row=0, column=0, padx=20)
+    test_info_frame.grid(row=0, column=1, padx=20)
+    geomagnetic_frame.grid(row=0, column=2, padx=20)
+    input_frame.grid(row=1, column=1, padx=20, pady=50)
+
+    test_label.pack()
+    geomagnetic_label.pack()
+
     first_input_label.grid(row=0, column=0)
     second_input_label.grid(row=0, column=1)
     third_input_label.grid(row=0, column=2)
@@ -111,7 +110,7 @@ def submit(root_window, current_window, user, lottery_details, winning_number_li
     print(time)
 
     for prediction in item_prediction:
-        print(prediction)
+        print(prediction.get())
 
     current_window.destroy()
 
