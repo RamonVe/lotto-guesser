@@ -9,7 +9,7 @@ import tkinter
 
 def session_results(root_window, user, lottery_details, winning_numbers, time, item_guess_input):
     results_window = tkinter.Toplevel(root_window)
-    results_window.geometry('940x500')
+    results_window.geometry('925x500')
     results_window.title('Practice Test Results')
     results_window.iconbitmap(wi.window_icon())
 
@@ -29,7 +29,7 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     results_frame.grid(row=2, column=1, padx=20, pady=50)
     pairing_frame.grid_remove()
 
-    time_label = Label(time_frame, text=time)
+    time_label = Label(time_frame, text=time, background='white')
     time_label.pack()
 
     lottery_name = lottery_details[0]
@@ -54,10 +54,10 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     number_four = winning_numbers[3]
     number_five = winning_numbers[4]
 
-    first_input_label = Label(input_frame, text='Ball 1: ' + number_one + '/' + guess_one)
-    second_input_label = Label(input_frame, text='Ball 2: ' + number_two + '/' + guess_two)
-    third_input_label = Label(input_frame, text='Ball 3: ' + number_three + '/' + guess_three)
-    fourth_input_label = Label(input_frame, text='Ball 4: ' + number_four + '/' + guess_four)
+    first_input_label = Label(input_frame, text='Ball 1: ' + number_one + '/' + guess_one, background='white')
+    second_input_label = Label(input_frame, text='Ball 2: ' + number_two + '/' + guess_two, background='white')
+    third_input_label = Label(input_frame, text='Ball 3: ' + number_three + '/' + guess_three, background='white')
+    fourth_input_label = Label(input_frame, text='Ball 4: ' + number_four + '/' + guess_four, background='white')
     fifth_input_label = Label(input_frame, text='Ball 5: ' + number_five + '/' + guess_five,
                               background=lc.color(lottery_name),
                               foreground=lc.text_color(lottery_name))
@@ -78,15 +78,24 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     correct_item_five = correct_items[4]
 
     first_results_label = Label(results_frame, text='Ball 1: ' + number_one + '/' + correct_item_one,
-                                background=result_background(guess_one, correct_item_one))
+                                background='white')
     second_results_label = Label(results_frame, text='Ball 2: ' + number_two + '/' + correct_item_two,
-                                 background=result_background(guess_two, correct_item_two))
+                                 background='white')
     third_results_label = Label(results_frame, text='Ball 3: ' + number_three + '/' + correct_item_three,
-                                background=result_background(guess_three, correct_item_three))
+                                background='white')
     fourth_results_label = Label(results_frame, text='Ball 4: ' + number_four + '/' + correct_item_four,
-                                 background=result_background(guess_four, correct_item_four))
+                                 background='white')
     fifth_results_label = Label(results_frame, text='Ball 5: ' + number_five + '/' + correct_item_five,
-                                background=result_background(guess_five, number_five))
+                                background='white')
+
+    color_results_label = Label(results_frame, width=10, background=result_background(guess_two, correct_item_two))
+    second_color_results_label = Label(results_frame, width=10,
+                                       background=result_background(guess_two, correct_item_two))
+    third_color_results_label = Label(results_frame, width=10,
+                                      background=result_background(guess_three, correct_item_three))
+    fourth_color_results_label = Label(results_frame, width=10,
+                                       background=result_background(guess_four, correct_item_four))
+    fifth_color_results_label = Label(results_frame, width=10, background=result_background(guess_five, number_five))
 
     show_results = Button(results_window, text='Show ball/item pairings?',
                           command=lambda: show_pairings(pairing_frame))
@@ -105,6 +114,11 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     third_results_label.grid(row=1, column=2, padx=5)
     fourth_results_label.grid(row=1, column=3, padx=5)
     fifth_results_label.grid(row=1, column=4, padx=5)
+    color_results_label.grid(row=2, column=0, padx=5)
+    second_color_results_label.grid(row=2, column=1, padx=5)
+    third_color_results_label.grid(row=2, column=2, padx=5)
+    fourth_color_results_label.grid(row=2, column=3, padx=5)
+    fifth_color_results_label.grid(row=2, column=4, padx=5)
 
     scrollbar = Scrollbar(pairing_frame, orient=VERTICAL)
     pairings_text.config(yscrollcommand=scrollbar.set)
