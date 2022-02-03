@@ -48,11 +48,12 @@ def practice_session_item_guess(root_window, selected_lottery, user):
     geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic')
     geomagnetic_label.pack()
 
-    first_input_label = Label(input_frame, text='Ball 1: ' + winning_number_list[0])
-    second_input_label = Label(input_frame, text='Ball 2: ' + winning_number_list[1])
-    third_input_label = Label(input_frame, text='Ball 3: ' + winning_number_list[2])
-    fourth_input_label = Label(input_frame, text='Ball 4: ' + winning_number_list[3])
-    fifth_input_label = Label(input_frame, text='Ball 5: ' + winning_number_list[4])
+    first_input_label = Label(input_frame, text='Ball 1: ' + winning_number_list[0], background='white')
+    second_input_label = Label(input_frame, text='Ball 2: ' + winning_number_list[1], background='white')
+    third_input_label = Label(input_frame, text='Ball 3: ' + winning_number_list[2], background='white')
+    fourth_input_label = Label(input_frame, text='Ball 4: ' + winning_number_list[3], background='white')
+    fifth_input_label = Label(input_frame, text='Ball 5: ' + winning_number_list[4],
+                              background=lc.color(selected_lottery), foreground=lc.text_color(selected_lottery))
 
     item_list = open('storage/item_list', 'r').readlines()
     pure_items = []
