@@ -9,8 +9,7 @@ class Timer:
         self.parent = parent
         self.time = StringVar()
         self.time.set("00:00:00")
-        self.label = Label(self.parent, textvariable=self.time, font="Times 8 bold", bg="white")
-        self.label.pack()
+        self.label = Label(self.parent, textvariable=self.time, font="Times 12 bold", bg="white")
 
     def reset(self):
         self.count = 0
