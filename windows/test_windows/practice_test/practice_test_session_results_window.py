@@ -91,8 +91,8 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     time_frame.grid(row=0, column=0, padx=20)
     test_info_frame.grid(row=0, column=1, padx=20)
     geomagnetic_frame.grid(row=0, column=2, padx=20)
-    input_frame.grid(row=1, column=1, padx=20, pady=50)
-    results_frame.grid(row=2, column=1, padx=20, pady=50)
+    input_frame.grid(row=1, column=1, padx=20, pady=20)
+    results_frame.grid(row=2, column=1, padx=20, pady=20)
     pairing_frame.grid_remove()
 
     time_label.pack()
@@ -141,7 +141,7 @@ def result_background(user_input, correct_item):
 
 def show_pairings(results_window, pairing_frame, show_results):
     show_results.grid_remove()
-    results_window.geometry('930x902')
+    results_window.geometry('930x700')
     pairing_frame.grid(row=4, column=1, padx=20, pady=50)
     return
 
