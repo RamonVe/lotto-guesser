@@ -9,7 +9,7 @@ import tkinter
 
 def session_results(root_window, user, lottery_details, winning_numbers, time, item_guess_input):
     results_window = tkinter.Toplevel(root_window)
-    results_window.geometry('918x320')
+    results_window.geometry('940x500')
     results_window.title('Practice Test Results')
     results_window.iconbitmap(wi.window_icon())
 
@@ -42,11 +42,11 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic')
     geomagnetic_label.pack()
 
-    guess_one = item_guess_input[0]
-    guess_two = item_guess_input[1]
-    guess_three = item_guess_input[2]
-    guess_four = item_guess_input[3]
-    guess_five = item_guess_input[4]
+    guess_one = item_guess_input[0].get()
+    guess_two = item_guess_input[1].get()
+    guess_three = item_guess_input[2].get()
+    guess_four = item_guess_input[3].get()
+    guess_five = item_guess_input[4].get()
 
     number_one = winning_numbers[0]
     number_two = winning_numbers[1]
