@@ -103,11 +103,11 @@ def practice_session_item_guess(root_window, selected_lottery, user):
     test_label.pack()
     geomagnetic_label.pack()
 
-    first_input_label.grid(row=0, column=0)
-    second_input_label.grid(row=0, column=1)
-    third_input_label.grid(row=0, column=2)
-    fourth_input_label.grid(row=0, column=3)
-    fifth_input_label.grid(row=0, column=4)
+    first_input_label.grid(row=0, column=0, padx=5)
+    second_input_label.grid(row=0, column=1, padx=5)
+    third_input_label.grid(row=0, column=2, padx=5)
+    fourth_input_label.grid(row=0, column=3, padx=5)
+    fifth_input_label.grid(row=0, column=4, padx=5)
 
     first_entry.grid(row=1, column=0, padx=5)
     second_entry.grid(row=1, column=1, padx=5)
