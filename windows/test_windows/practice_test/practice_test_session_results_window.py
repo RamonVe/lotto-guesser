@@ -10,7 +10,7 @@ import tkinter
 
 def session_results(root_window, user, lottery_details, winning_numbers, time, item_guess_input):
     results_window = tkinter.Toplevel(root_window)
-    results_window.geometry('930x500')
+    results_window.geometry('1920x1080')
     results_window.title('Practice Test Results')
     results_window.iconbitmap(wi.window_icon())
 
