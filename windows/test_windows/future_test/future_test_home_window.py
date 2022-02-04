@@ -1,6 +1,6 @@
 from tkinter import *
 from windows import dashboard_window as dw
-from windows.test_windows.practice_test import practice_test_input_window as pti
+from windows.test_windows.future_test import future_test_date_input_window as fti
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
 import tkinter
@@ -48,28 +48,28 @@ def future_test_window(root_window, user):
 
 
 def power_ball(root_window, future_window, user):
-    practice_test_input(root_window, future_window, 'Powerball', user)
+    date_input(root_window, future_window, 'Powerball', user)
 
 
 def mega_millions(root_window, future_window, user):
-    practice_test_input(root_window, future_window, 'Mega Millions', user)
+    date_input(root_window, future_window, 'Mega Millions', user)
 
 
 def lotto_america(root_window, future_window, user):
-    practice_test_input(root_window, future_window, 'Lotto America', user)
+    date_input(root_window, future_window, 'Lotto America', user)
 
 
 def cash_four_life(root_window, future_window, user):
-    practice_test_input(root_window, future_window, 'Cash 4 Life', user)
+    date_input(root_window, future_window, 'Cash 4 Life', user)
 
 
 def tn_cash(root_window, future_window, user):
-    practice_test_input(root_window, future_window, 'TN Cash', user)
+    date_input(root_window, future_window, 'TN Cash', user)
 
 
-def practice_test_input(root_window, future_window, selected_lottery, user):
+def date_input(root_window, future_window, selected_lottery, user):
     future_window.destroy()
-    pti.practice_session_item_guess(root_window, selected_lottery, user)
+    fti.input_date(root_window, selected_lottery, user)
 
 
 def dash_board(root_window, future_window, user):
