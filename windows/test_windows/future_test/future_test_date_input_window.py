@@ -2,6 +2,7 @@ from datetime import datetime
 from tkinter import *
 from tkcalendar import Calendar
 from windows.test_windows.future_test import future_test_home_window as fth
+from windows.test_windows.future_test import future_test_number_input_window as ftn
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
 import tkinter
@@ -51,7 +52,10 @@ def days(selected_lottery):
 
 def submit(root_window, input_window, selected_lottery, selected_date, user):
     print(selected_date)
-    return
+
+    input_window.destroy()
+
+    ftn.future_session_number_input(root_window, selected_lottery, selected_date, user)
 
 
 def lottery_selection(root_window, input_window, user):
