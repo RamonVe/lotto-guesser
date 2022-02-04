@@ -12,7 +12,6 @@ import tkinter
 
 def practice_session_item_guess(root_window, selected_lottery, user):
     input_window = tkinter.Toplevel(root_window)
-    input_window.geometry('1110x300')
     input_window.grid_columnconfigure(0, weight=1)
     input_window.grid_rowconfigure(0, weight=1)
     input_window.iconbitmap(wi.window_icon())
