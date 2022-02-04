@@ -1,10 +1,10 @@
 from entities import user as u
 from tkinter import *
+from tkinter import ttk
 from windows.test_windows.test_timer import timer as t
 from windows.window_utillities import lottery_color as lc
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
-
 import tkinter
 
 
@@ -42,23 +42,48 @@ def future_session_number_input(root_window, selected_lottery, selected_date, us
                               background=lc.color(selected_lottery), foreground=lc.text_color(selected_lottery),
                               font="Times 10 bold")
 
-    first_guess = StringVar()
-    second_guess = StringVar()
-    third_guess = StringVar()
-    fourth_guess = StringVar()
-    fifth_guess = StringVar()
+    first_guess = IntVar()
+    second_guess = IntVar()
+    third_guess = IntVar()
+    fourth_guess = IntVar()
+    fifth_guess = IntVar()
 
-    first_entry = Entry(input_frame, textvariable=first_guess)
-    second_entry = Entry(input_frame, textvariable=second_guess)
-    third_entry = Entry(input_frame, textvariable=third_guess)
-    fourth_entry = Entry(input_frame, textvariable=fourth_guess)
-    fifth_entry = Entry(input_frame, textvariable=fifth_guess)
+    option_one = StringVar()
+    option_two = StringVar()
+    option_three = StringVar()
+    option_four = StringVar()
+    option_five = StringVar()
+
+    option_one.set('Select an item.')
+    option_two.set('Select an item.')
+    option_three.set('Select an item.')
+    option_four.set('Select an item.')
+    option_five.set('Select an item.')
+
+    first_number_entry = Entry(input_frame, textvariable=first_guess)
+    second_number_entry = Entry(input_frame, textvariable=second_guess)
+    third_number_entry = Entry(input_frame, textvariable=third_guess)
+    fourth_number_entry = Entry(input_frame, textvariable=fourth_guess)
+    fifth_number_entry = Entry(input_frame, textvariable=fifth_guess)
+
+    item_list = open('storage/item_list', 'r').readlines()
+    pure_items = []
+    for item in item_list:
+        pure_items.append(item.strip())
+
+    first_item_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_one)
+    second_item_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_two)
+    third_item_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_three)
+    fourth_item_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_four)
+    fifth_item_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_five)
 
     number_guess = [first_guess, second_guess, third_guess, fourth_guess, fifth_guess]
 
+    item_guess = [option_one, option_two, option_three, option_four, option_five]
+
     submit_button = Button(input_frame, text='Submit',
                            command=lambda: submit(root_window, input_window, selected_lottery, selected_date, user,
-                                                  timer, number_guess))
+                                                  timer, number_guess, item_guess))
 
     time_frame.grid(row=0, column=0, padx=20, sticky=NW)
     time_frame.grid_rowconfigure(0, weight=1)
@@ -80,33 +105,41 @@ def future_session_number_input(root_window, selected_lottery, selected_date, us
     test_label.pack()
     geomagnetic_label.pack()
 
-    first_input_label.grid(row=0, column=0, padx=5)
-    second_input_label.grid(row=0, column=1, padx=5)
-    third_input_label.grid(row=0, column=2, padx=5)
-    fourth_input_label.grid(row=0, column=3, padx=5)
-    fifth_input_label.grid(row=0, column=4, padx=5)
+    first_input_label.grid(row=0, column=0, padx=5, pady=5)
+    second_input_label.grid(row=0, column=1, padx=5, pady=5)
+    third_input_label.grid(row=0, column=2, padx=5, pady=5)
+    fourth_input_label.grid(row=0, column=3, padx=5, pady=5)
+    fifth_input_label.grid(row=0, column=4, padx=5, pady=5)
 
-    first_entry.grid(row=1, column=0, padx=5)
-    second_entry.grid(row=1, column=1, padx=5)
-    third_entry.grid(row=1, column=2, padx=5)
-    fourth_entry.grid(row=1, column=3, padx=5)
-    fifth_entry.grid(row=1, column=4, padx=5)
+    first_number_entry.grid(row=1, column=0, padx=5, pady=5)
+    second_number_entry.grid(row=1, column=1, padx=5, pady=5)
+    third_number_entry.grid(row=1, column=2, padx=5, pady=5)
+    fourth_number_entry.grid(row=1, column=3, padx=5, pady=5)
+    fifth_number_entry.grid(row=1, column=4, padx=5, pady=5)
 
-    submit_button.grid(row=2, column=2, padx=20, pady=20)
+    first_item_entry.grid(row=2, column=0, padx=5, pady=5)
+    second_item_entry.grid(row=2, column=1, padx=5, pady=5)
+    third_item_entry.grid(row=2, column=2, padx=5, pady=5)
+    fourth_item_entry.grid(row=2, column=3, padx=5, pady=5)
+    fifth_item_entry.grid(row=2, column=4, padx=5, pady=5)
+
+    submit_button.grid(row=3, column=2, padx=20, pady=20)
 
     wp.quit_confirmation(root_window, input_window)
 
 
-def submit(root_window, current_window, selected_lottery, selected_date, user, timer, number_guess):
+def submit(root_window, current_window, selected_lottery, selected_date, user, timer, number_guess, item_guess):
     timer.stop()
 
     time = timer.time_as_string
 
+    # Console Output
     print(selected_lottery)
     print(selected_date)
     print(time)
-
     for number in number_guess:
         print(number.get())
+    for item in item_guess:
+        print(item.get())
 
     # current_window.destroy()
