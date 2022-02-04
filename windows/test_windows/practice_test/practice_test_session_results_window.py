@@ -22,7 +22,7 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     test_info_frame = LabelFrame(results_window)
     geomagnetic_frame = LabelFrame(results_window, text='Geomagnetic')
     input_frame = LabelFrame(results_window, text=user_first_name + "'s " + 'guess.')
-    results_frame = LabelFrame(results_window, text='Results!')
+    results_frame = LabelFrame(results_window, text='Results! green = correct, red = incorrect')
     pairing_frame = LabelFrame(results_window, text='All Pairings')
 
     time_label = Label(time_frame, text=time, background='white', font="Times 12 bold")
@@ -68,15 +68,15 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     correct_item_four = correct_items[3]
     correct_item_five = correct_items[4]
 
-    first_color_results_label = Label(results_frame, width=10,
+    first_color_results_label = Label(results_frame, text='Ball 1', width=10,
                                       background=result_background(guess_one, correct_item_one))
-    second_color_results_label = Label(results_frame, width=10,
+    second_color_results_label = Label(results_frame, text='Ball 2', width=10,
                                        background=result_background(guess_two, correct_item_two))
-    third_color_results_label = Label(results_frame, width=10,
+    third_color_results_label = Label(results_frame, text='Ball 3', width=10,
                                       background=result_background(guess_three, correct_item_three))
-    fourth_color_results_label = Label(results_frame, width=10,
+    fourth_color_results_label = Label(results_frame, text='Ball 4', width=10,
                                        background=result_background(guess_four, correct_item_four))
-    fifth_color_results_label = Label(results_frame, width=10,
+    fifth_color_results_label = Label(results_frame, text='Ball 5', width=10,
                                       background=result_background(guess_five, correct_item_five))
 
     dash_button = Button(results_window, text='Return to Dashboard',
