@@ -121,10 +121,24 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     geomagnetic_label.pack()
 
     first_input_label.grid(row=1, column=0, padx=5)
+    first_input_label.grid_rowconfigure(1, weight=1)
+    first_input_label.grid_columnconfigure(0, weight=1)
+
     second_input_label.grid(row=1, column=1, padx=5)
+    second_input_label.grid_rowconfigure(1, weight=1)
+    second_input_label.grid_columnconfigure(1, weight=1)
+
     third_input_label.grid(row=1, column=2, padx=5)
+    third_input_label.grid_rowconfigure(1, weight=1)
+    third_input_label.grid_columnconfigure(1, weight=1)
+
     fourth_input_label.grid(row=1, column=3, padx=5)
+    fourth_input_label.grid_rowconfigure(1, weight=1)
+    fourth_input_label.grid_columnconfigure(3, weight=1)
+
     fifth_input_label.grid(row=1, column=4, padx=5)
+    fifth_input_label.grid_rowconfigure(1, weight=1)
+    fifth_input_label.grid_columnconfigure(4, weight=1)
 
     first_color_results_label.grid(row=0, column=0, padx=5)
     second_color_results_label.grid(row=0, column=1, padx=5)
