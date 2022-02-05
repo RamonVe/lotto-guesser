@@ -53,10 +53,10 @@ def registration_window(root_window):
                                                     age,
                                                     location,
                                                     user_name,
-                                                    pass_word))
+                                                    pass_word), font="Times 12 bold")
 
     return_button = Button(button_frame, text='Return To Login', width=16,
-                           command=lambda: return_to_login(root_window, register_window))
+                           command=lambda: return_to_login(root_window, register_window), font="Times 12 bold")
 
     f_name_frame.pack(padx=5, pady=5)
     l_name_frame.pack(padx=5, pady=5)
