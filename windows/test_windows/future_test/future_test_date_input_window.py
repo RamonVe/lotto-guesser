@@ -14,40 +14,42 @@ def input_date(root_window, selected_lottery, user):
     input_window.title('Future ' + selected_lottery + ' Date Selection')
 
     instruction_label = Label(input_window,
-                              text='Select a future date for ' + selected_lottery + '\n' + days(selected_lottery))
+                              text='Select a future date for ' + selected_lottery + '\n' + days(selected_lottery),
+                              font='Times 12 bold')
 
     date = StringVar()
-    calendar = Calendar(input_window, textvariable=date, selectmode='day', mindate=datetime.now())
+    calendar = Calendar(input_window, textvariable=date, selectmode='day', mindate=datetime.now(), font='Times 12 bold')
 
     submit_button = Button(input_window, text='Submit',
-                           command=lambda: submit(root_window, input_window, selected_lottery, date.get(), user))
+                           command=lambda: submit(root_window, input_window, selected_lottery, date.get(), user),
+                           font='Times 12 bold')
 
     return_button = Button(input_window, text='Return To Lottery Selection',
-                           command=lambda: lottery_selection(root_window, input_window, user))
+                           command=lambda: lottery_selection(root_window, input_window, user), font='Times 12 bold')
 
-    instruction_label.pack(pady=5)
-    calendar.pack(pady=10)
-    submit_button.pack(pady=10)
-    return_button.pack(pady=10)
+    instruction_label.pack(padx=5, pady=5)
+    calendar.pack(padx=5, pady=10)
+    submit_button.pack(padx=5, pady=10)
+    return_button.pack(padx=5, pady=10)
 
     wp.quit_confirmation(root_window, input_window)
 
 
 def days(selected_lottery):
     if selected_lottery == 'Powerball':
-        return 'The Powerball is only drawn on Monday, Wednesday and Saturday'
+        return 'The Powerball is only drawn on Monday, Wednesday and Saturday.'
 
     elif selected_lottery == 'Mega Millions':
-        return 'The Mega Millions is only drawn on Tuesday and Friday'
+        return 'The Mega Millions is only drawn on Tuesday and Friday.'
 
     elif selected_lottery == 'Lotto America':
-        return 'The Lotto America is only drawn on Wednesday and Saturday'
+        return 'The Lotto America is only drawn on Wednesday and Saturday.'
 
     elif selected_lottery == 'Cash 4 Life':
         return 'The Cash 4 Life is drawn everyday.'
 
     else:
-        return 'The TN Cash is only drawn on Monday, Wednesday and Friday'
+        return 'The TN Cash is only drawn on Monday, Wednesday and Friday.'
 
 
 def submit(root_window, input_window, selected_lottery, selected_date, user):
