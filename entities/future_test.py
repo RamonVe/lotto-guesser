@@ -1,6 +1,6 @@
 class FutureTest:
     def __init__(self, user, time, lottery_name, lottery_date, item_guesses, number_item_pair):
-        self.user = user.user_as_list(),
+        self.user = user.user_details_list(),
         self.time = time
         self.lottery_name = lottery_name,
         self.lottery_date = lottery_date,
