@@ -33,7 +33,7 @@ def delete_users():
         pickle.dump(new_user_list, s, protocol=pickle.HIGHEST_PROTOCOL)
 
 
-def save_future_test(future_test):
-    with open('storage/future_test_storage.txt', 'a') as f:
+def save_future_test(user, future_test):
+    with open('storage/future_tests/' + user.username + '_future_test_storage.txt', 'a') as f:
         json_future_test = json.dumps(future_test.__dict__)
         f.write(str(json_future_test) + '\n')

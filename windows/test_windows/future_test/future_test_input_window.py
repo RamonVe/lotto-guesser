@@ -117,7 +117,7 @@ def submit(root_window, current_window, selected_lottery, selected_date, user, t
 
     future_test = fu.FutureTest(user, time, selected_lottery, selected_date, item_guess, random_number_item_pair)
 
-    ldu.save_future_test(future_test)
+    ldu.save_future_test(user, future_test)
 
     messagebox.showinfo('Success!', selected_lottery + ' for ' + selected_date + ' has been successfully registered!')
 
