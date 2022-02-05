@@ -13,7 +13,7 @@ from windows.window_utillities import window_protocol as wp
 import tkinter
 
 
-def future_session_number_input(root_window, selected_lottery, selected_date, user):
+def future_session_input(root_window, selected_lottery, selected_date, user):
     input_window = tkinter.Toplevel(root_window)
     input_window.grid_columnconfigure(0, weight=1)
     input_window.grid_rowconfigure(0, weight=1)

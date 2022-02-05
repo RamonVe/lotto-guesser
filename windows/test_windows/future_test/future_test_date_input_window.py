@@ -57,7 +57,7 @@ def submit(root_window, input_window, selected_lottery, selected_date, user):
 
     input_window.destroy()
 
-    ftn.future_session_number_input(root_window, selected_lottery, selected_date, user)
+    ftn.future_session_input(root_window, selected_lottery, selected_date, user)
 
 
 def lottery_selection(root_window, input_window, user):
