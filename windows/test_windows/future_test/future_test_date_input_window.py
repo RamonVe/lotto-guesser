@@ -10,25 +10,25 @@ import tkinter
 
 def input_date(root_window, selected_lottery, user):
     input_window = tkinter.Toplevel(root_window)
-    input_window.geometry('400x400')
     input_window.iconbitmap(wi.window_icon())
     input_window.title('Future ' + selected_lottery + ' Date Selection')
 
     instruction_label = Label(input_window,
                               text='Select a future date for ' + selected_lottery + '\n' + days(selected_lottery))
 
-    instruction_label.pack(pady=20)
-
     date = StringVar()
     calendar = Calendar(input_window, textvariable=date, selectmode='day', mindate=datetime.now())
 
+    submit_button = Button(input_window, text='Submit',
+                           command=lambda: submit(root_window, input_window, selected_lottery, date.get(), user))
+
+    return_button = Button(input_window, text='Return To Lottery Selection',
+                           command=lambda: lottery_selection(root_window, input_window, user))
+
+    instruction_label.pack(pady=5)
     calendar.pack(pady=10)
-
-    Button(input_window, text='Submit',
-           command=lambda: submit(root_window, input_window, selected_lottery, date.get(), user)).pack(pady=10)
-
-    Button(input_window, text='Return To Lottery Selection',
-           command=lambda: lottery_selection(root_window, input_window, user)).pack(pady=5)
+    submit_button.pack(pady=10)
+    return_button.pack(pady=10)
 
     wp.quit_confirmation(root_window, input_window)
 
