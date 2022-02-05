@@ -8,61 +8,84 @@ from windows.window_utillities import window_protocol
 import tkinter
 
 
-def registration_window(root_window, log_window):
-    log_window.destroy()
-
+def registration_window(root_window):
     register_window = tkinter.Toplevel(root_window)
-    register_window.geometry('230x180')
     register_window.title('Register')
     register_window.iconbitmap(window_icon.window_icon())
 
-    f_name_label = Label(register_window, text='First Name')
-    l_name_label = Label(register_window, text='Last Name')
-    age_label = Label(register_window, text='Age')
-    location_label = Label(register_window, text='Location')
-    user_name_label = Label(register_window, text='User Name')
-    pass_word_label = Label(register_window, text='Password')
+    f_name_frame = LabelFrame(register_window)
+    l_name_frame = LabelFrame(register_window)
+    age_frame = LabelFrame(register_window)
+    location_frame = LabelFrame(register_window)
+    user_name_frame = LabelFrame(register_window)
+    pass_word_frame = LabelFrame(register_window)
+    button_frame = LabelFrame(register_window)
 
     f_name = StringVar()
-    l_name = StringVar()
-    age = StringVar()
-    location = StringVar()
-    user_name = StringVar()
-    pass_word = StringVar()
+    f_name_label = Label(f_name_frame, text='First Name', font="Times 12 bold", width=10)
+    f_name_entry = Entry(f_name_frame, textvariable=f_name, width=20)
 
-    f_name_entry = Entry(register_window, textvariable=f_name)
-    l_name_entry = Entry(register_window, textvariable=l_name)
-    age_entry = Entry(register_window, textvariable=age)
-    location_entry = Entry(register_window, textvariable=location)
-    user_name_entry = Entry(register_window, textvariable=user_name)
-    pass_word_entry = Entry(register_window, textvariable=pass_word)
+    l_name = StringVar()
+    l_name_label = Label(l_name_frame, text='Last Name', font="Times 12 bold", width=10)
+    l_name_entry = Entry(l_name_frame, textvariable=l_name, width=20)
+
+    age = StringVar()
+    age_label = Label(age_frame, text='Age', font="Times 12 bold", width=10)
+    age_entry = Entry(age_frame, textvariable=age, width=20)
+
+    location = StringVar()
+    location_label = Label(location_frame, text='Location', font="Times 12 bold", width=10)
+    location_entry = Entry(location_frame, textvariable=location, width=20)
+
+    user_name = StringVar()
+    user_name_label = Label(user_name_frame, text='User Name', font="Times 12 bold", width=10)
+    user_name_entry = Entry(user_name_frame, textvariable=user_name, width=20)
+
+    pass_word = StringVar()
+    pass_word_label = Label(pass_word_frame, text='Password', font="Times 12 bold", width=10)
+    pass_word_entry = Entry(pass_word_frame, textvariable=pass_word, width=20, show='*')
+
+    submit_button = Button(button_frame, text='Submit', width=16,
+                           command=lambda: register(root_window,
+                                                    register_window,
+                                                    f_name,
+                                                    l_name,
+                                                    age,
+                                                    location,
+                                                    user_name,
+                                                    pass_word))
+
+    return_button = Button(button_frame, text='Return To Login', width=16,
+                           command=lambda: return_to_login(root_window, register_window))
+
+    f_name_frame.pack(padx=5, pady=5)
+    l_name_frame.pack(padx=5, pady=5)
+    age_frame.pack(padx=5, pady=5)
+    location_frame.pack(padx=5, pady=5)
+    user_name_frame.pack(padx=5, pady=5)
+    pass_word_frame.pack(padx=5, pady=5)
+    button_frame.pack(padx=5, pady=5)
 
     f_name_label.grid(row=0, column=0)
-    l_name_label.grid(row=1, column=0)
-    age_label.grid(row=2, column=0)
-    location_label.grid(row=3, column=0)
-    user_name_label.grid(row=4, column=0)
-    pass_word_label.grid(row=5, column=0)
-
     f_name_entry.grid(row=0, column=1)
-    l_name_entry.grid(row=1, column=1)
-    age_entry.grid(row=2, column=1)
-    location_entry.grid(row=3, column=1)
-    user_name_entry.grid(row=4, column=1)
-    pass_word_entry.grid(row=5, column=1)
 
-    Button(register_window, text='Submit', width=16,
-           command=lambda: register(root_window,
-                                    register_window,
-                                    f_name,
-                                    l_name,
-                                    age,
-                                    location,
-                                    user_name,
-                                    pass_word)).grid(row=6, column=1)
+    l_name_label.grid(row=0, column=0)
+    l_name_entry.grid(row=0, column=1)
 
-    Button(register_window, text='Return To Login', width=16,
-           command=lambda: return_to_login(root_window, register_window)).grid(row=7, column=1)
+    age_label.grid(row=0, column=0)
+    age_entry.grid(row=0, column=1)
+
+    location_label.grid(row=0, column=0)
+    location_entry.grid(row=0, column=1)
+
+    user_name_label.grid(row=0, column=0)
+    user_name_entry.grid(row=0, column=1)
+
+    pass_word_label.grid(row=0, column=0)
+    pass_word_entry.grid(row=0, column=1)
+
+    submit_button.grid(row=0, column=0)
+    return_button.grid(row=0, column=1)
 
     window_protocol.quit_confirmation(root_window, register_window)
 
