@@ -1,3 +1,4 @@
+import json
 import pickle
 
 
@@ -28,5 +29,11 @@ def load_users():
 
 def delete_users():
     new_user_list = []
-    with open('storage/user_list', 'wb') as s:
+    with open('user_list', 'wb') as s:
         pickle.dump(new_user_list, s, protocol=pickle.HIGHEST_PROTOCOL)
+
+
+def save_future_test(future_test):
+    with open('storage/future_test_storage.txt', 'a') as f:
+        json_future_test = json.dumps(future_test.__dict__)
+        f.write(str(json_future_test) + '\n')
