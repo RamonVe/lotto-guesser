@@ -21,31 +21,26 @@ def future_session_number_input(root_window, selected_lottery, selected_date, us
     user_first_name = u.User.first_name(user)
     input_window.title(user_first_name + "'s " + selected_lottery + ' Ball Number Guess')
 
-    time_frame = LabelFrame(input_window, text='Timer')
+    time_frame = LabelFrame(input_window, text='Timer', font='Times 12 bold')
     test_info_frame = LabelFrame(input_window)
-    geomagnetic_frame = LabelFrame(input_window, text='Geomagnetic')
-    input_frame = LabelFrame(input_window, text='What number is each ball?')
+    geomagnetic_frame = LabelFrame(input_window, text='Geomagnetic', font='Times 12 bold')
+    input_frame = LabelFrame(input_window, text='What item is each ball?', font='Times 12 bold')
 
     timer = t.Timer(time_frame)
     timer.start()
 
     test_label = Label(test_info_frame,
-                       text='What will be the winning numbers for the ' + selected_lottery + ' on ' +
-                            selected_date + '?', font="Times 12 bold")
+                       text=selected_lottery + ' prediction' + ' for ' + selected_date, font="Times 12 bold")
 
     geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic', font="Times 12 bold")
 
-    first_input_label = Label(input_frame, text='Ball 1: ', background='white',
-                              font="Times 10 bold")
-    second_input_label = Label(input_frame, text='Ball 2: ', background='white',
-                               font="Times 10 bold")
-    third_input_label = Label(input_frame, text='Ball 3: ', background='white',
-                              font="Times 10 bold")
-    fourth_input_label = Label(input_frame, text='Ball 4: ', background='white',
-                               font="Times 10 bold")
+    first_input_label = Label(input_frame, text='Ball 1: ', background='white', font='Times 12 bold')
+    second_input_label = Label(input_frame, text='Ball 2: ', background='white', font='Times 12 bold')
+    third_input_label = Label(input_frame, text='Ball 3: ', background='white', font='Times 12 bold')
+    fourth_input_label = Label(input_frame, text='Ball 4: ', background='white', font='Times 12 bold')
     fifth_input_label = Label(input_frame, text='Ball 5: ',
                               background=lc.color(selected_lottery), foreground=lc.text_color(selected_lottery),
-                              font="Times 10 bold")
+                              font='Times 12 bold')
 
     option_one = StringVar()
     option_two = StringVar()

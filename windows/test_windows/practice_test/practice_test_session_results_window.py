@@ -24,7 +24,7 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     results_frame = LabelFrame(results_window, text='Results! green = correct, red = incorrect', font="Times 12 bold")
     pairing_frame = LabelFrame(results_window, text='All Pairings', font="Times 12 bold")
 
-    time_label = Label(time_frame, text=time, background='white', font="Times 12 bold")
+    time_label = Label(time_frame, text=time, background='white', font='Times 12 bold')
 
     lottery_name = lottery_details[0]
     lottery_date = lottery_details[1]
