@@ -2,7 +2,7 @@ from datetime import datetime
 from tkinter import *
 from tkcalendar import Calendar
 from windows.test_windows.future_test import future_test_home_window as fth
-from windows.test_windows.future_test import future_test_number_input_window as ftn
+from windows.test_windows.future_test import future_test_input_window as ftn
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
 import tkinter
