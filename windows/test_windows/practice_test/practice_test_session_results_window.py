@@ -177,7 +177,6 @@ def result_background(user_input, correct_item):
 def show_pairings(pairing_frame, show_results):
     show_results.grid_remove()
     pairing_frame.grid(row=4, column=1, padx=20, pady=50)
-    return
 
 
 def dash_board(root_window, current_window, logged_in_user):
