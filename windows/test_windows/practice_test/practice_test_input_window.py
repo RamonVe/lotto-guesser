@@ -36,8 +36,7 @@ def practice_session_item_guess(root_window, selected_lottery, user):
     winning_number_list = winning_numbers.split('-')
 
     test_label = Label(test_info_frame,
-                       text='What were the winning numbers for the ' + selected_lottery + ' on ' + lottery_date + '?',
-                       font="Times 12 bold")
+                       text=selected_lottery + ' on ' + lottery_date, font="Times 12 bold")
 
     geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic', font="Times 12 bold")
 

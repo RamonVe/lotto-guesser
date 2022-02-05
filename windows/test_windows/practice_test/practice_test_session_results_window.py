@@ -17,19 +17,19 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
 
     user_first_name = u.User.first_name(user)
 
-    time_frame = LabelFrame(results_window, text='Total Time')
+    time_frame = LabelFrame(results_window, text='Total Time', font="Times 12 bold")
     test_info_frame = LabelFrame(results_window)
-    geomagnetic_frame = LabelFrame(results_window, text='Geomagnetic')
-    input_frame = LabelFrame(results_window, text=user_first_name + "'s " + 'guess.')
-    results_frame = LabelFrame(results_window, text='Results! green = correct, red = incorrect')
-    pairing_frame = LabelFrame(results_window, text='All Pairings')
+    geomagnetic_frame = LabelFrame(results_window, text='Geomagnetic', font="Times 12 bold")
+    input_frame = LabelFrame(results_window, text=user_first_name + "'s " + 'guess.', font="Times 12 bold")
+    results_frame = LabelFrame(results_window, text='Results! green = correct, red = incorrect', font="Times 12 bold")
+    pairing_frame = LabelFrame(results_window, text='All Pairings', font="Times 12 bold")
 
     time_label = Label(time_frame, text=time, background='white', font="Times 12 bold")
 
     lottery_name = lottery_details[0]
     lottery_date = lottery_details[1]
     test_label = Label(test_info_frame,
-                       text='The winning numbers for ' + lottery_name + ' on ' + lottery_date, background='white',
+                       text=lottery_name + ' on ' + lottery_date, background='white',
                        font="Times 12 bold")
 
     geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic', background='white', font="Times 12 bold")
@@ -46,18 +46,13 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     number_four = winning_numbers[3]
     number_five = winning_numbers[4]
 
-    first_input_label = Label(input_frame, text='Ball 1: ' + guess_one, background='white',
-                              font="Times 10 bold")
-    second_input_label = Label(input_frame, text='Ball 2: ' + guess_two, background='white',
-                               font="Times 10 bold")
-    third_input_label = Label(input_frame, text='Ball 3: ' + guess_three, background='white',
-                              font="Times 10 bold")
-    fourth_input_label = Label(input_frame, text='Ball 4: ' + guess_four, background='white',
-                               font="Times 10 bold")
+    first_input_label = Label(input_frame, text='Ball 1: ' + guess_one, background='white', font="Times 12 bold")
+    second_input_label = Label(input_frame, text='Ball 2: ' + guess_two, background='white', font="Times 12 bold")
+    third_input_label = Label(input_frame, text='Ball 3: ' + guess_three, background='white', font="Times 12 bold")
+    fourth_input_label = Label(input_frame, text='Ball 4: ' + guess_four, background='white', font="Times 12 bold")
     fifth_input_label = Label(input_frame, text='Ball 5: ' + guess_five,
                               background=lc.color(lottery_name),
-                              foreground=lc.text_color(lottery_name),
-                              font="Times 10 bold")
+                              foreground=lc.text_color(lottery_name), font="Times 12 bold")
 
     random_number_item_pair = ir.random_pair()
     correct_items = correct_item_list(random_number_item_pair, winning_numbers)
@@ -68,21 +63,23 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     correct_item_five = correct_items[4]
 
     first_color_results_label = Label(results_frame, text='Ball 1: ' + number_one + '-' + correct_item_one,
-                                      background=result_background(guess_one, correct_item_one))
+                                      background=result_background(guess_one, correct_item_one), font="Times 12 bold")
     second_color_results_label = Label(results_frame, text='Ball 2: ' + number_two + '-' + correct_item_two,
-                                       background=result_background(guess_two, correct_item_two))
+                                       background=result_background(guess_two, correct_item_two), font="Times 12 bold")
     third_color_results_label = Label(results_frame, text='Ball 3: ' + number_three + '-' + correct_item_three,
-                                      background=result_background(guess_three, correct_item_three))
+                                      background=result_background(guess_three, correct_item_three),
+                                      font="Times 12 bold")
     fourth_color_results_label = Label(results_frame, text='Ball 4: ' + number_four + '-' + correct_item_four,
-                                       background=result_background(guess_four, correct_item_four))
+                                       background=result_background(guess_four, correct_item_four),
+                                       font="Times 12 bold")
     fifth_color_results_label = Label(results_frame, text='Ball 5: ' + number_five + '-' + correct_item_five,
-                                      background=result_background(guess_five, correct_item_five))
+                                      background=result_background(guess_five, correct_item_five), font="Times 12 bold")
 
     dash_button = Button(results_window, text='Return to Dashboard',
-                         command=lambda: dash_board(root_window, results_window, user))
+                         command=lambda: dash_board(root_window, results_window, user), font="Times 12 bold")
 
     show_results = Button(results_window, text='Show ball/item pairings?',
-                          command=lambda: show_pairings(pairing_frame, show_results))
+                          command=lambda: show_pairings(pairing_frame, show_results), font="Times 12 bold")
 
     keys = list(random_number_item_pair.keys())
     values = list(random_number_item_pair.values())
