@@ -9,3 +9,7 @@ class User:
 
     def first_name(self):
         return self.first_name
+
+    def user_details_list(self):
+        user_details_list = [self.first_name, self.username, self.location]
+        return user_details_list
