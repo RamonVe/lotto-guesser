@@ -18,10 +18,10 @@ def practice_session_item_guess(root_window, selected_lottery, user):
     user_first_name = u.User.first_name(user)
     input_window.title(user_first_name + "'s " + selected_lottery + ' Practice Test Ball/Item Guess')
 
-    time_frame = LabelFrame(input_window, text='Timer')
+    time_frame = LabelFrame(input_window, text='Timer', font="Times 12 bold")
     test_info_frame = LabelFrame(input_window)
-    geomagnetic_frame = LabelFrame(input_window, text='Geomagnetic')
-    input_frame = LabelFrame(input_window, text='What item is each ball?')
+    geomagnetic_frame = LabelFrame(input_window, text='Geomagnetic', font="Times 12 bold")
+    input_frame = LabelFrame(input_window, text='What item is each ball?', font="Times 12 bold")
 
     timer = t.Timer(time_frame)
     timer.start()
@@ -41,17 +41,13 @@ def practice_session_item_guess(root_window, selected_lottery, user):
 
     geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic', font="Times 12 bold")
 
-    first_input_label = Label(input_frame, text='Ball 1: ', background='white',
-                              font="Times 10 bold")
-    second_input_label = Label(input_frame, text='Ball 2: ', background='white',
-                               font="Times 10 bold")
-    third_input_label = Label(input_frame, text='Ball 3: ', background='white',
-                              font="Times 10 bold")
-    fourth_input_label = Label(input_frame, text='Ball 4: ', background='white',
-                               font="Times 10 bold")
+    first_input_label = Label(input_frame, text='Ball 1: ', background='white', font="Times 12 bold")
+    second_input_label = Label(input_frame, text='Ball 2: ', background='white', font="Times 12 bold")
+    third_input_label = Label(input_frame, text='Ball 3: ', background='white', font="Times 12 bold")
+    fourth_input_label = Label(input_frame, text='Ball 4: ', background='white', font="Times 12 bold")
     fifth_input_label = Label(input_frame, text='Ball 5: ',
                               background=lc.color(selected_lottery), foreground=lc.text_color(selected_lottery),
-                              font="Times 10 bold")
+                              font="Times 12 bold")
 
     item_list = open('storage/item_list', 'r').readlines()
     pure_items = []
@@ -70,17 +66,19 @@ def practice_session_item_guess(root_window, selected_lottery, user):
     option_four.set('Select an item.')
     option_five.set('Select an item.')
 
-    first_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_one, width=20)
-    second_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_two, width=20)
-    third_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_three, width=20)
-    fourth_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_four, width=20)
-    fifth_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_five, width=20)
+    first_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_one, width=20, font="Times 12 bold")
+    second_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_two, width=20, font="Times 12 bold")
+    third_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_three, width=20,
+                               font="Times 12 bold")
+    fourth_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_four, width=20,
+                                font="Times 12 bold")
+    fifth_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_five, width=20, font="Times 12 bold")
 
     item_predictions = [option_one, option_two, option_three, option_four, option_five]
 
     submit_button = Button(input_frame, text='Submit',
                            command=lambda: submit(root_window, input_window, user, lottery_details, winning_number_list,
-                                                  timer, item_predictions))
+                                                  timer, item_predictions), font="Times 12 bold")
 
     time_frame.grid(row=0, column=0, padx=20, sticky=NW)
     time_frame.grid_rowconfigure(0, weight=1)
