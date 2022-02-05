@@ -23,7 +23,7 @@ def dashboard_window(root_window, user):
                              command=lambda: practice_test(root_window, dash_window, user), font='Times 12 bold')
     future_button = Button(future_frame, text='Start A Future Test', width=20,
                            command=lambda: future_test(root_window, dash_window, user), font='Times 12 bold')
-    saved_tests_label = Label(saved_tests_frame, text='Select a saved future test to update it.',
+    saved_tests_label = Label(saved_tests_frame, text='Select a saved future test to update.',
                               font='Times 12 bold')
     saved_tests_dropdown = ttk.Combobox(saved_tests_frame, values=['test', 'test2'], font='Times 12 bold')
     update_button = Button(saved_tests_frame, text='Update', font='Times 12 bold')
