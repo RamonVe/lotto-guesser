@@ -18,18 +18,18 @@ def login_window(root_window):
     button_frame = LabelFrame(log_window)
 
     username = StringVar()
-    user_label = Label(user_frame, text='User Name:', font="Times 12 bold")
-    user_entry = Entry(user_frame, textvariable=username)
+    user_label = Label(user_frame, text='User Name:', font="Times 12 bold", width=10)
+    user_entry = Entry(user_frame, textvariable=username, width=20)
 
     password = StringVar()
-    pass_label = Label(pass_frame, text='Password:', font="Times 12 bold")
-    pass_entry = Entry(pass_frame, textvariable=password, show='*')
+    pass_label = Label(pass_frame, text='Password:', font="Times 12 bold", width=10)
+    pass_entry = Entry(pass_frame, textvariable=password, show='*', width=20)
 
     login_button = Button(button_frame, text='Login',
                           command=lambda: validate_login(username, password, root_window, log_window),
-                          font="Times 12 bold")
-    register_button = Button(button_frame, text='Register',
-                             command=lambda: rw.registration_window(root_window, log_window), font="Times 12 bold")
+                          font="Times 12 bold", width=10)
+    register_button = Button(button_frame, text='Register', font="Times 12 bold",
+                             command=lambda: registration(root_window, log_window), width=10)
 
     user_frame.pack(padx=5, pady=5)
     pass_frame.pack(padx=5, pady=5)
@@ -65,6 +65,11 @@ def validate_login(username, password, root_window, log_window):
             else:
                 m.showwarning('No user found!', 'No user with that username found, try again!')
                 break
+
+
+def registration(root_window, log_window):
+    log_window.destroy()
+    rw.registration_window(root_window)
 
 
 def dashboard(root_window, logged_in_user):
