@@ -52,7 +52,7 @@ def random_lottery_details(selected_lottery):
 def past_or_present():
     random_past_present = random.randint(1, 100)
 
-    if random_past_present <= 70:
+    if random_past_present <= 75:
         return '2021'
     else:
         return '2022'
