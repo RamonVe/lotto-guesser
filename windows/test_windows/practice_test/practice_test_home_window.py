@@ -8,41 +8,37 @@ import tkinter
 
 def practice_test_window(root_window, user):
     practice_window = tkinter.Toplevel(root_window)
-    practice_window.geometry('320x150')
     practice_window.title('Practice Test')
     practice_window.iconbitmap(wi.window_icon())
 
-    test_label = Label(practice_window, text='Select a lottery to practice.')
+    test_label = Label(practice_window, text='Select a lottery to practice.', font="Times 12 bold")
 
     power_ball_button = Button(practice_window, text='Powerball',
-                               command=lambda: power_ball(root_window, practice_window, user))
-
-    empty_space_one = Label(practice_window, text='')
+                               command=lambda: power_ball(root_window, practice_window, user), font="Times 12 bold")
 
     mega_millions_button = Button(practice_window, text='Mega Millions',
-                                  command=lambda: mega_millions(root_window, practice_window, user))
+                                  command=lambda: mega_millions(root_window, practice_window, user),
+                                  font="Times 12 bold")
     lotto_america_button = Button(practice_window, text='Lotto America',
-                                  command=lambda: lotto_america(root_window, practice_window, user))
-
-    empty_space_two = Label(practice_window, text='')
+                                  command=lambda: lotto_america(root_window, practice_window, user),
+                                  font="Times 12 bold")
 
     cash_four_life_button = Button(practice_window, text='Cash 4 Life',
-                                   command=lambda: cash_four_life(root_window, practice_window, user))
+                                   command=lambda: cash_four_life(root_window, practice_window, user),
+                                   font="Times 12 bold")
     tn_cash_button = Button(practice_window, text='TN Cash',
-                            command=lambda: tn_cash(root_window, practice_window, user))
+                            command=lambda: tn_cash(root_window, practice_window, user), font="Times 12 bold")
 
     dashboard_button = Button(practice_window, text='Return To Dashboard',
-                              command=lambda: dash_board(root_window, practice_window, user))
+                              command=lambda: dash_board(root_window, practice_window, user), font="Times 12 bold")
 
-    test_label.grid(row=0, column=1)
-    power_ball_button.grid(row=1, column=0)
-    empty_space_one.grid(row=2, column=0)
-    mega_millions_button.grid(row=3, column=0)
-    lotto_america_button.grid(row=1, column=2)
-    empty_space_two.grid(row=2, column=3)
-    cash_four_life_button.grid(row=3, column=2)
-    tn_cash_button.grid(row=4, column=1)
-    dashboard_button.grid(row=5, column=1)
+    test_label.grid(row=0, column=1, pady=10, padx=10)
+    power_ball_button.grid(row=1, column=0, pady=10, padx=10)
+    mega_millions_button.grid(row=2, column=0, pady=10, padx=10)
+    lotto_america_button.grid(row=1, column=2, pady=10, padx=10)
+    cash_four_life_button.grid(row=2, column=2, pady=10, padx=10)
+    tn_cash_button.grid(row=3, column=1, pady=10, padx=10)
+    dashboard_button.grid(row=4, column=1, pady=10, padx=10)
 
     wp.quit_confirmation(root_window, practice_window)
 
