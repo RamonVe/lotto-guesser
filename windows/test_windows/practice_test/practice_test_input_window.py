@@ -125,11 +125,11 @@ def submit(root_window, current_window, user, lottery_details, winning_number_li
     time = timer.time_as_string
 
     # Console debug output
-    print(winning_number_list)
-    print(time)
-
-    for prediction in item_prediction:
-        print(prediction.get())
+    # print(winning_number_list)
+    # print(time)
+    #
+    # for prediction in item_prediction:
+    #     print(prediction.get())
 
     current_window.destroy()
 
