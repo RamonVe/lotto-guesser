@@ -1,12 +1,12 @@
-import re
-
 from entities import user as u
 from tkinter import *
 from tkinter import ttk
+from windows.future_test_updates import future_test_update_input_window as ftu
 from windows.test_windows.future_test import future_test_home_window as fth
 from windows.test_windows.practice_test import practice_test_home_window as pth
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
+import re
 import tkinter
 
 
@@ -36,7 +36,8 @@ def dashboard_window(root_window, user):
                                         font='Times 12 bold')
 
     update_button = Button(saved_tests_frame, text='Update', font='Times 12 bold',
-                           command=lambda: get_saved_future_tests(user))
+                           command=lambda: submit(root_window, dash_window, user,
+                                                  selected_future_test.get()))
 
     parent_frame.pack()
     practice_frame.pack(side='left', padx=10)
@@ -76,3 +77,31 @@ def get_saved_future_tests(user):
         saved_tests_dropdown_options.append(lotto_name[1] + ': ' + lotto_date[1])
 
     return saved_tests_dropdown_options
+
+
+def prepare_future_test(user, selected_future_test):
+    selected_test = selected_future_test.split(': ')
+
+    f = open('storage/future_tests/' + user.username + '_future_test_storage.txt', 'r')
+    saved_tests = f.readlines()
+
+    for test in saved_tests:
+        split_test = test.split(',')
+        lottery_info = split_test[4]
+        lottery_date = split_test[5]
+
+        lotto_name = re.findall('"([^"]*)"', lottery_info)
+        lotto_date = re.findall('"([^"]*)"', lottery_date)
+
+        test_details = [lotto_name[1], lotto_date[1]]
+
+        if selected_test == test_details:
+            return test
+
+
+def submit(root_window, current_window, user, selected_future_test):
+    prepared_future_test = prepare_future_test(user, selected_future_test)
+
+    current_window.destroy()
+
+    ftu.future_update_number_input(root_window, user, prepared_future_test)
