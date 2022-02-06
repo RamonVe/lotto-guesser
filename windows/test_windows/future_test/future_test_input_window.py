@@ -65,7 +65,7 @@ def future_session_input(root_window, selected_lottery, selected_date, user):
     fourth_item_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_four)
     fifth_item_entry = ttk.Combobox(input_frame, values=pure_items, textvariable=option_five)
 
-    item_guess = [option_one.get(), option_two.get(), option_three.get(), option_four.get(), option_five.get()]
+    item_guess = [option_one, option_two, option_three, option_four, option_five]
 
     submit_button = Button(input_frame, text='Save Future Test',
                            command=lambda: submit(root_window, input_window, selected_lottery, selected_date, user,
@@ -113,9 +113,14 @@ def submit(root_window, current_window, selected_lottery, selected_date, user, t
 
     time = timer.time_as_string
 
+    serializable_item_guess = []
+    for item in item_guess:
+        serializable_item_guess.append(item.get())
+
     random_number_item_pair = ir.random_pair()
 
-    future_test = fu.FutureTest(user, time, selected_lottery, selected_date, item_guess, random_number_item_pair)
+    future_test = fu.FutureTest(user, time, selected_lottery, selected_date, serializable_item_guess,
+                                random_number_item_pair)
 
     ldu.save_future_test(user, future_test)
 
