@@ -1,5 +1,6 @@
 from entities import user as u
 from tkinter import *
+from windows.future_test_updates import future_test_update_results as ftr
 from windows.window_utillities import lottery_color as lc
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
@@ -88,10 +89,20 @@ def future_update_number_input(root_window, user, future_test):
     geomagnetic_label.pack()
 
     first_input_label.grid(row=0, column=0, padx=5, pady=5)
+    first_input_label.grid_rowconfigure(0, weight=1)
+    first_input_label.grid_columnconfigure(0, weight=1)
     second_input_label.grid(row=0, column=1, padx=5, pady=5)
+    second_input_label.grid_rowconfigure(0, weight=1)
+    second_input_label.grid_columnconfigure(1, weight=1)
     third_input_label.grid(row=0, column=2, padx=5, pady=5)
+    third_input_label.grid_rowconfigure(0, weight=1)
+    third_input_label.grid_columnconfigure(2, weight=1)
     fourth_input_label.grid(row=0, column=3, padx=5, pady=5)
+    fourth_input_label.grid_rowconfigure(0, weight=1)
+    fourth_input_label.grid_columnconfigure(3, weight=1)
     fifth_input_label.grid(row=0, column=4, padx=5, pady=5)
+    fifth_input_label.grid_rowconfigure(0, weight=1)
+    fifth_input_label.grid_columnconfigure(4, weight=1)
 
     first_number_entry.grid(row=2, column=0, padx=5, pady=5)
     second_number_entry.grid(row=2, column=1, padx=5, pady=5)
@@ -107,14 +118,15 @@ def future_update_number_input(root_window, user, future_test):
 def submit(root_window, current_window, user, time, lottery_name, lottery_date, item_guesses, number_item_pair,
            correct_numbers):
 
-    print(time)
-    print(lottery_name)
-    print(lottery_date)
-    print(item_guesses)
-    print(number_item_pair)
-    for number in correct_numbers:
-        print(number.get())
+    # print(time)
+    # print(lottery_name)
+    # print(lottery_date)
+    # print(item_guesses)
+    # print(number_item_pair)
+    # for number in correct_numbers:
+    #     print(number.get())
 
-    # current_window.destroy()
+    current_window.destroy()
 
-    return
+    ftr.session_results(root_window, user, time, lottery_name, lottery_date, item_guesses, number_item_pair,
+                        correct_numbers)
