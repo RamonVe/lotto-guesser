@@ -105,8 +105,8 @@ def session_results(root_window, user, lottery_details, winning_numbers, time, i
     geomagnetic_frame.grid_columnconfigure(2, weight=1)
 
     input_frame.grid(row=1, column=1, padx=20, pady=20, sticky=NSEW)
-    input_frame.grid_rowconfigure(1, weight=1)
-    input_frame.grid_columnconfigure(1, weight=1)
+    # input_frame.grid_rowconfigure(1, weight=1)
+    # input_frame.grid_columnconfigure(1, weight=1)
 
     results_frame.grid(row=2, column=1, padx=20, pady=20, sticky=S)
     results_frame.grid_rowconfigure(2, weight=1)
