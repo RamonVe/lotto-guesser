@@ -86,6 +86,7 @@ def prepare_future_test(user, selected_future_test):
     saved_tests = f.readlines()
 
     for test in saved_tests:
+        index = saved_tests.index(test)
         split_test = test.split(',')
         lottery_info = split_test[4]
         lottery_date = split_test[5]
@@ -96,7 +97,9 @@ def prepare_future_test(user, selected_future_test):
         test_details = [lotto_name[1], lotto_date[1]]
 
         if selected_test == test_details:
-            return test
+            index_test = [index, test]
+            print(index_test)
+            return index_test
 
 
 def submit(root_window, current_window, user, selected_future_test):
