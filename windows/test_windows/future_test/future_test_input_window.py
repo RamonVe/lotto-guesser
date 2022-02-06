@@ -1,5 +1,6 @@
 from entities import future_test as fu
 from entities import user as u
+from geomagnetic_data import geomagnetic_retrieval as gr
 from storage import local_data_utilities as ldu
 from tkinter import *
 from tkinter import messagebox
@@ -32,7 +33,9 @@ def future_session_input(root_window, selected_lottery, selected_date, user):
     test_label = Label(test_info_frame,
                        text=selected_lottery + ' prediction' + ' for ' + selected_date, font="Times 12 bold")
 
-    geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic', font="Times 12 bold")
+    kp = gr.get_kp()
+    bz = gr.get_bz()
+    geomagnetic_label = Label(geomagnetic_frame, text='KP: ' + kp + ' BZ: ' + bz, font="Times 12 bold")
 
     first_input_label = Label(input_frame, text='Ball 1: ', background='white', font='Times 12 bold')
     second_input_label = Label(input_frame, text='Ball 2: ', background='white', font='Times 12 bold')

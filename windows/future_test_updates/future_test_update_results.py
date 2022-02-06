@@ -1,5 +1,6 @@
 from tkinter import *
 from entities import user as u
+from geomagnetic_data import geomagnetic_retrieval as gr
 from windows import dashboard_window as dw
 from windows.window_utillities import lottery_color as lc
 from windows.window_utillities import window_icon as wi
@@ -30,7 +31,10 @@ def session_results(root_window, user, time, lottery_name, lottery_date, item_gu
                        text=lottery_name + ' on ' + lottery_date, background='white',
                        font="Times 12 bold")
 
-    geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic', background='white', font="Times 12 bold")
+    kp = gr.get_kp()
+    bz = gr.get_bz()
+    geomagnetic_label = Label(geomagnetic_frame, text='KP: ' + kp + ' BZ: ' + bz, background='white',
+                              font="Times 12 bold")
 
     guess_one = item_guesses[0]
     guess_two = item_guesses[1]

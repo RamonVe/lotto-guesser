@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from entities import user as u
+from geomagnetic_data import geomagnetic_retrieval as gr
 from windows.test_windows.practice_test import past_lottery_randomizer as plr
 from windows.test_windows.practice_test import practice_test_session_results_window as psr
 from windows.test_windows.test_timer import timer as t
@@ -38,7 +39,9 @@ def practice_session_item_guess(root_window, selected_lottery, user):
     test_label = Label(test_info_frame,
                        text=selected_lottery + ' on ' + lottery_date, font="Times 12 bold")
 
-    geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic', font="Times 12 bold")
+    kp = gr.get_kp()
+    bz = gr.get_bz()
+    geomagnetic_label = Label(geomagnetic_frame, text='KP: ' + kp + ' BZ: ' + bz, font="Times 12 bold")
 
     first_input_label = Label(input_frame, text='Ball 1: ', background='white', font="Times 12 bold")
     second_input_label = Label(input_frame, text='Ball 2: ', background='white', font="Times 12 bold")

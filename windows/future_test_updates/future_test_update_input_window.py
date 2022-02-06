@@ -1,4 +1,5 @@
 from entities import user as u
+from geomagnetic_data import geomagnetic_retrieval as gr
 from tkinter import *
 from windows.future_test_updates import future_test_update_results as ftr
 from windows.window_utillities import lottery_color as lc
@@ -40,7 +41,9 @@ def future_update_number_input(root_window, user, future_test):
     test_label = Label(test_info_frame,
                        text=lottery_name + ' prediction' + ' for ' + lottery_date, font="Times 12 bold")
 
-    geomagnetic_label = Label(geomagnetic_frame, text='Geomagnetic', font="Times 12 bold")
+    kp = gr.get_kp()
+    bz = gr.get_bz()
+    geomagnetic_label = Label(geomagnetic_frame, text='KP: ' + kp + ' BZ: ' + bz, font="Times 12 bold")
 
     first_input_label = Label(input_frame, text='Ball 1: ', background='white', font='Times 12 bold')
     second_input_label = Label(input_frame, text='Ball 2: ', background='white', font='Times 12 bold')
