@@ -3,6 +3,7 @@ import json
 import requests
 
 
+# This function returns kp data in json format and converts the json data to a list.
 def get_kp_json():
     try:
         kp_url = requests.get('https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json')
@@ -13,6 +14,7 @@ def get_kp_json():
         return 'No Data Available'
 
 
+# This function returns bz data in json format and converts the json data to a list.
 def get_bz_json():
     try:
         bz_url = requests.get('https://services.swpc.noaa.gov/products/solar-wind/mag-2-hour.json')
@@ -24,6 +26,7 @@ def get_bz_json():
         return 'No Data Available'
 
 
+# This function returns the most recent kp measurement.
 def get_kp():
     now = datetime.now()
     formatted_now = now.strftime('%Y-%m-%d')
@@ -39,6 +42,7 @@ def get_kp():
         return last_kp[1]
 
 
+# This function returns the most recent bz measurement.
 def get_bz():
     now = datetime.now()
     formatted_now = now.strftime('%Y-%m-%d')

@@ -1,3 +1,4 @@
-from windows import root_window
+from windows import root_window as rw
 
-root_window.initialize_ui()
+# This is the main function that initializes the UI
+rw.initialize_ui()

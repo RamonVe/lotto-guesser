@@ -3,11 +3,12 @@ from windows import dashboard_window as dw
 from windows.test_windows.future_test import future_test_date_input_window as fti
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
-import tkinter
+import tkinter as tk
 
 
+# This function creates a future test lottery selection window.
 def future_test_window(root_window, user):
-    future_window = tkinter.Toplevel(root_window)
+    future_window = tk.Toplevel(root_window)
     future_window.title('Future Test')
     future_window.iconbitmap(wi.window_icon())
 
@@ -43,31 +44,38 @@ def future_test_window(root_window, user):
     wp.quit_confirmation(root_window, future_window)
 
 
+# This function selects powerball for the future test session.
 def power_ball(root_window, future_window, user):
     date_input(root_window, future_window, 'Powerball', user)
 
 
+# This function selects mega millions for the future test session.
 def mega_millions(root_window, future_window, user):
     date_input(root_window, future_window, 'Mega Millions', user)
 
 
+# This function selects lotto america for the future test session.
 def lotto_america(root_window, future_window, user):
     date_input(root_window, future_window, 'Lotto America', user)
 
 
+# This function selects cash 4 life for the future test session.
 def cash_four_life(root_window, future_window, user):
     date_input(root_window, future_window, 'Cash 4 Life', user)
 
 
+# This function selects tn cash for the future test session.
 def tn_cash(root_window, future_window, user):
     date_input(root_window, future_window, 'TN Cash', user)
 
 
+# This function passes the selected lottery and launches the date selection window.
 def date_input(root_window, future_window, selected_lottery, user):
     future_window.destroy()
     fti.input_date(root_window, selected_lottery, user)
 
 
+# This function returns to the dashboard.
 def dash_board(root_window, future_window, user):
     future_window.destroy()
     dw.dashboard_window(root_window, user)

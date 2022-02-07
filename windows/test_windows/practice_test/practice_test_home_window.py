@@ -3,11 +3,12 @@ from windows import dashboard_window as dw
 from windows.test_windows.practice_test import practice_test_input_window as pti
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
-import tkinter
+import tkinter as tk
 
 
+# This function creates a window where the user selects the lottery they want to practice with.
 def practice_test_window(root_window, user):
-    practice_window = tkinter.Toplevel(root_window)
+    practice_window = tk.Toplevel(root_window)
     practice_window.title('Practice Test')
     practice_window.iconbitmap(wi.window_icon())
 
@@ -43,31 +44,38 @@ def practice_test_window(root_window, user):
     wp.quit_confirmation(root_window, practice_window)
 
 
+# This function selects powerball for the practice test session.
 def power_ball(root_window, practice_window, user):
     practice_test_input(root_window, practice_window, 'Powerball', user)
 
 
+# This function selects mega millions for the practice test session.
 def mega_millions(root_window, practice_window, user):
     practice_test_input(root_window, practice_window, 'Mega Millions', user)
 
 
+# This function selects lotto america for the practice test session.
 def lotto_america(root_window, practice_window, user):
     practice_test_input(root_window, practice_window, 'Lotto America', user)
 
 
+# This function selects cash 4 life for the practice test session.
 def cash_four_life(root_window, practice_window, user):
     practice_test_input(root_window, practice_window, 'Cash 4 Life', user)
 
 
+# This function selects tn cash for the practice test session.
 def tn_cash(root_window, practice_window, user):
     practice_test_input(root_window, practice_window, 'TN Cash', user)
 
 
+# This function passes in the selected lottery and user to the practice test input window.
 def practice_test_input(root_window, practice_window, selected_lottery, user):
     practice_window.destroy()
     pti.practice_session_item_guess(root_window, selected_lottery, user)
 
 
+# This function returns the user back to their dashboard.
 def dash_board(root_window, practice_window, user):
     practice_window.destroy()
     dw.dashboard_window(root_window, user)

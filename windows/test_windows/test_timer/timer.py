@@ -1,6 +1,7 @@
 from tkinter import *
 
 
+# This class defines a timer object used to time a test.
 class Timer:
 
     def __init__(self, parent):

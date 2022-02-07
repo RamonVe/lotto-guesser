@@ -1,6 +1,7 @@
 import random as r
 
 
+# This function generates a random pair of 77 numbers to the 77 provided items.
 def random_pair():
     item_list = open('storage/item_list', 'r').readlines()
 
