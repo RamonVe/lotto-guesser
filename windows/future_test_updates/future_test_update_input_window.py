@@ -125,7 +125,10 @@ def submit(root_window, current_window, user, time, lottery_name, lottery_date, 
            correct_numbers):
 
     for number in correct_numbers:
-        if int(number.get()) > 77:
+        if number.get() == '':
+            m.showwarning('Empty field!', 'A field is empty!')
+            return
+        elif int(number.get()) > 77:
             m.showwarning('Number too high!', 'A number you entered is past 77!')
             return
 
