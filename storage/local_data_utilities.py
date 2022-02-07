@@ -9,8 +9,6 @@ def save_user(new_user):
 
     loaded_user_list = list(loaded_file)
 
-    print(loaded_user_list)
-
     loaded_user_list.append(new_user)
 
     with open('storage/user_list', 'wb') as s:

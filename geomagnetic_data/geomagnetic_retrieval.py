@@ -59,7 +59,3 @@ def get_bz():
     if len(matching_dates) > 1:
         last_bz = matching_dates[-1]
         return last_bz[1]
-
-
-print(get_kp())
-print(get_bz())

@@ -56,8 +56,6 @@ def days(selected_lottery):
 
 # This function submits the selected date and lottery to launch a future test session.
 def submit(root_window, input_window, selected_lottery, selected_date, user):
-    print(selected_date)
-
     input_window.destroy()
 
     ftn.future_session_input(root_window, selected_lottery, selected_date, user)
