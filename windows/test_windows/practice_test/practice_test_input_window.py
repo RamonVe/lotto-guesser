@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from entities import user as u
 from geomagnetic_data import geomagnetic_retrieval as gr
+from tkinter import messagebox as m
 from windows.test_windows.practice_test import past_lottery_randomizer as plr
 from windows.test_windows.practice_test import practice_test_session_results_window as psr
 from windows.test_windows.test_timer import timer as t
@@ -121,13 +122,21 @@ def practice_session_item_guess(root_window, selected_lottery, user):
     wp.quit_confirmation(root_window, input_window)
 
 
+# This function checks input to make sure all item dropdowns were used.
+def submit(root_window, current_window, user, lottery_details, winning_number_list, timer, item_prediction):
+
+    for item in item_prediction:
+        if item.get() == 'Select an item.':
+            m.showwarning('Item not selected!', 'An item was not selected!')
+            return
+
+    success(current_window, item_prediction, lottery_details, root_window, timer, user, winning_number_list)
+
+
 # This function stops the timer, passes the item to the next window, destroys the window and calls for the result
 # window.
-def submit(root_window, current_window, user, lottery_details, winning_number_list, timer, item_prediction):
+def success(current_window, item_prediction, lottery_details, root_window, timer, user, winning_number_list):
     timer.stop()
-
     time = timer.time_as_string
-
     current_window.destroy()
-
     psr.session_results(root_window, user, lottery_details, winning_number_list, time, item_prediction)
