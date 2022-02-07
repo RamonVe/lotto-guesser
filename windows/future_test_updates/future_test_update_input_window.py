@@ -1,6 +1,7 @@
 from entities import user as u
 from geomagnetic_data import geomagnetic_retrieval as gr
 from tkinter import *
+from tkinter import messagebox as m
 from windows.future_test_updates import future_test_update_results as ftr
 from windows.window_utillities import lottery_color as lc
 from windows.window_utillities import window_icon as wi
@@ -119,11 +120,22 @@ def future_update_number_input(root_window, user, future_test):
     wp.quit_confirmation(root_window, input_window)
 
 
-# This function takes in the winning number input and launches a result window.
+# This function checks user input to make sure no number exceeds the index count of items a user can guess.
 def submit(root_window, current_window, user, time, lottery_name, lottery_date, item_guesses, number_item_pair,
            correct_numbers):
 
-    current_window.destroy()
+    for number in correct_numbers:
+        if int(number.get()) > 77:
+            m.showwarning('Number too high!', 'A number you entered is past 77!')
+            return
 
+    success(correct_numbers, current_window, item_guesses, lottery_date, lottery_name, number_item_pair, root_window,
+            time, user)
+
+
+# This function launches a session results window if the user input satisfies the submit function.
+def success(correct_numbers, current_window, item_guesses, lottery_date, lottery_name, number_item_pair, root_window,
+            time, user):
+    current_window.destroy()
     ftr.session_results(root_window, user, time, lottery_name, lottery_date, item_guesses, number_item_pair,
                         correct_numbers)
