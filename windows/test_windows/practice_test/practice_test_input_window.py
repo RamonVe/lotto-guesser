@@ -8,11 +8,12 @@ from windows.test_windows.test_timer import timer as t
 from windows.window_utillities import lottery_color as lc
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
-import tkinter
+import tkinter as tk
 
 
+# This function creates a practice test session input window.
 def practice_session_item_guess(root_window, selected_lottery, user):
-    input_window = tkinter.Toplevel(root_window)
+    input_window = tk.Toplevel(root_window)
     input_window.grid_columnconfigure(0, weight=1)
     input_window.grid_rowconfigure(0, weight=1)
     input_window.iconbitmap(wi.window_icon())
@@ -39,6 +40,7 @@ def practice_session_item_guess(root_window, selected_lottery, user):
     test_label = Label(test_info_frame,
                        text=selected_lottery + ' on ' + lottery_date, font="Times 12 bold")
 
+    # KP and BZ data are retrieved.
     kp = gr.get_kp()
     bz = gr.get_bz()
     geomagnetic_label = Label(geomagnetic_frame, text='KP: ' + kp + ' BZ: ' + bz, font="Times 12 bold")
@@ -119,17 +121,12 @@ def practice_session_item_guess(root_window, selected_lottery, user):
     wp.quit_confirmation(root_window, input_window)
 
 
+# This function stops the timer, passes the item to the next window, destroys the window and calls for the result
+# window.
 def submit(root_window, current_window, user, lottery_details, winning_number_list, timer, item_prediction):
     timer.stop()
 
     time = timer.time_as_string
-
-    # Console debug output
-    print(winning_number_list)
-    print(time)
-
-    for prediction in item_prediction:
-        print(prediction.get())
 
     current_window.destroy()
 

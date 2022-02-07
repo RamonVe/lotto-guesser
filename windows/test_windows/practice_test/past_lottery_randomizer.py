@@ -1,6 +1,7 @@
 import random
 
 
+# This function returns a random 2021 or early 2022 lottery results depending on the lottery name.
 def random_lottery_details(selected_lottery):
     if selected_lottery == 'Powerball':
         if past_or_present() == '2021':
@@ -49,6 +50,9 @@ def random_lottery_details(selected_lottery):
             return random_details
 
 
+# This function randomly picks either 2021 or 2022 for use in the random lottery details function.
+# Currently, there is a 75% chance for 2021 to be returned since the 2022 lotteries don't have as
+# many results as the 2021 lotteries.
 def past_or_present():
     random_past_present = random.randint(1, 100)
 
