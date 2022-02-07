@@ -12,7 +12,7 @@ def future_test_window(root_window, user):
     future_window.title('Future Test')
     future_window.iconbitmap(wi.window_icon())
 
-    test_label = Label(future_window, text='Select a lottery to practice.', font="Times 12 bold")
+    test_label = Label(future_window, text='Select a lottery to predict.', font="Times 12 bold")
 
     power_ball_button = Button(future_window, text='Powerball',
                                command=lambda: power_ball(root_window, future_window, user), font="Times 12 bold")

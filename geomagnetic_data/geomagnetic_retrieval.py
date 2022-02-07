@@ -11,16 +11,16 @@ def get_kp_json():
         kp_data = json.loads(kp_text)
         return kp_data
     except requests.exceptions.ConnectionError:
+        print('error')
         return 'No Data Available'
 
 
 # This function returns bz data in json format and converts the json data to a list.
 def get_bz_json():
     try:
-        bz_url = requests.get('https://services.swpc.noaa.gov/products/solar-wind/mag-2-hour.json')
+        bz_url = requests.get('https://services.swpc.noaa.gov/products/solar-wind/mag-1-day.json')
         bz_text = bz_url.text
         bz_data = json.loads(bz_text)
-        # print(bz_data)
         return bz_data
     except requests.exceptions.ConnectionError:
         return 'No Data Available'
@@ -37,8 +37,6 @@ def get_kp():
             matching_dates.append(k)
     if len(matching_dates) > 1:
         last_kp = matching_dates[-1]
-        print(last_kp)
-        print(last_kp[1])
         return last_kp[1]
 
 
@@ -53,6 +51,5 @@ def get_bz():
             matching_dates.append(k)
     if len(matching_dates) > 1:
         last_bz = matching_dates[-1]
-        print(last_bz)
-        print(last_bz[3])
         return last_bz[3]
+
