@@ -44,6 +44,3 @@ def save_future_test(user, future_test):
     with open('storage/future_tests/' + user.username + '_future_test_storage.txt', 'a') as f:
         json_future_test = json.dumps(future_test.__dict__)
         f.write(str(json_future_test) + '\n')
-
-
-delete_users()
