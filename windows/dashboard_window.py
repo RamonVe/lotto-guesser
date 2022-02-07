@@ -7,78 +7,115 @@ from windows.test_windows.practice_test import practice_test_home_window as pth
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
 import re
-import tkinter
+import tkinter as tk
 
 
+# This function creates a dashboard window for a user after log in.
 def dashboard_window(root_window, user):
-    dash_window = tkinter.Toplevel(root_window)
+
+    # Window details are set.
+    dash_window = tk.Toplevel(root_window)
     first_name = u.User.first_name(user)
     dash_window.title(first_name + "'s Dashboard")
     dash_window.iconbitmap(wi.window_icon())
 
+    # Frames to hold widgets are created.
     parent_frame = LabelFrame(dash_window)
     practice_frame = LabelFrame(parent_frame)
     future_frame = LabelFrame(parent_frame)
     saved_tests_frame = LabelFrame(dash_window)
 
+    # Buttons are created and have the functionality to start either a practice test or future test.
     practice_button = Button(practice_frame, text='Start A Practice Test', width=20,
                              command=lambda: practice_test(root_window, dash_window, user), font='Times 12 bold')
-
     future_button = Button(future_frame, text='Start A Future Test', width=20,
                            command=lambda: future_test(root_window, dash_window, user), font='Times 12 bold')
 
+    # Label is created.
     saved_tests_label = Label(saved_tests_frame, text='Select a saved future test to update.',
                               font='Times 12 bold')
 
+    # Variable to hold selected saved future test from dropdown.
     selected_future_test = StringVar()
+
+    # Using ttk library a dropdown is created and has a lambda function to get all saved future tests for a user.
     saved_tests_dropdown = ttk.Combobox(saved_tests_frame, values=get_saved_future_tests(user),
                                         textvariable=selected_future_test,
                                         font='Times 12 bold')
 
+    # This button has a lambda function to allow a user to update a saved future test.
     update_button = Button(saved_tests_frame, text='Update', font='Times 12 bold',
                            command=lambda: submit(root_window, dash_window, user,
                                                   selected_future_test.get()))
 
+    # Frames are packed into the dashboard window.
     parent_frame.pack()
     practice_frame.pack(side='left', padx=10)
     future_frame.pack(side='right', padx=10)
     saved_tests_frame.pack(pady=20)
 
+    # Widgets are packed into their frames.
     practice_button.pack()
     future_button.pack()
     saved_tests_label.pack()
     saved_tests_dropdown.pack()
     update_button.pack()
 
+    # This function prevents a user from accidentally closing the application when the close button is pressed.
     wp.quit_confirmation(root_window, dash_window)
 
 
+# This function opens up a practice test window and closes the dashboard window.
 def practice_test(root_window, dash_window, user):
     dash_window.destroy()
     pth.practice_test_window(root_window, user)
 
 
+# This function opens up a future test window and closes the dashboard window.
 def future_test(root_window, dash_window, user):
     dash_window.destroy()
     fth.future_test_window(root_window, user)
 
 
+# This function retrieves all the saved future tests for a user.
 def get_saved_future_tests(user):
+
+    # File is found via its location and username.
     f = open('storage/future_tests/' + user.username + '_future_test_storage.txt', 'r')
+
+    # The open file is converted into a list of saved future tests.
     saved_tests = f.readlines()
 
+    # Empty list to hold the options of saved future tests is created.
     saved_tests_dropdown_options = []
+
+    # For loop to iterate through all the saved test.
     for tests in saved_tests:
+
+        # Each test is turned into a list.
         split = tests.split(',')
+
+        # Lottery_info is taken from the list based on its index.
         lottery_info = split[4]
+
+        # Lottery_date is taken from the list based on its index.
         lottery_date = split[5]
+
+        # Regex is used to find the name of the lottery of the saved test list info index.
         lotto_name = re.findall('"([^"]*)"', lottery_info)
+
+        # Regex is used to find the date of the lottery of the saved test list date index.
         lotto_date = re.findall('"([^"]*)"', lottery_date)
+
+        # Using a saved future test's details and regex, each saved future test is turned into simple string to be used
+        # as an option for the saved future test dropdown
         saved_tests_dropdown_options.append(lotto_name[1] + ': ' + lotto_date[1])
 
     return saved_tests_dropdown_options
 
 
+# This function uses the selected future test from the dropdown input and is compared with all the saved future tests
+# and returns the matching future test to be updated.
 def prepare_future_test(user, selected_future_test):
     selected_test = selected_future_test.split(': ')
 
@@ -100,6 +137,8 @@ def prepare_future_test(user, selected_future_test):
             return test
 
 
+# This function calls prepare_future_test to pass the selected future test to be updated in the future update number
+# input.
 def submit(root_window, current_window, user, selected_future_test):
     prepared_future_test = prepare_future_test(user, selected_future_test)
 
