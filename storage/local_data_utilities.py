@@ -16,7 +16,8 @@ def save_user(new_user):
     with open('storage/user_list', 'wb') as s:
         pickle.dump(loaded_user_list, s, protocol=pickle.HIGHEST_PROTOCOL)
 
-    print(loaded_user_list)
+    with open('storage/future_tests/' + new_user.username + '_future_test_storage.txt', 'a') as f:
+        f.write('')
 
 
 # This function loads the user list.
@@ -43,3 +44,6 @@ def save_future_test(user, future_test):
     with open('storage/future_tests/' + user.username + '_future_test_storage.txt', 'a') as f:
         json_future_test = json.dumps(future_test.__dict__)
         f.write(str(json_future_test) + '\n')
+
+
+delete_users()

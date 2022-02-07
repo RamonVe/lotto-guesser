@@ -12,7 +12,6 @@ import tkinter as tk
 
 # This function creates a dashboard window for a user after log in.
 def dashboard_window(root_window, user):
-
     # Window details are set.
     dash_window = tk.Toplevel(root_window)
     first_name = u.User.first_name(user)
@@ -79,7 +78,6 @@ def future_test(root_window, dash_window, user):
 
 # This function retrieves all the saved future tests for a user.
 def get_saved_future_tests(user):
-
     # File is found via its location and username.
     f = open('storage/future_tests/' + user.username + '_future_test_storage.txt', 'r')
 
@@ -89,27 +87,30 @@ def get_saved_future_tests(user):
     # Empty list to hold the options of saved future tests is created.
     saved_tests_dropdown_options = []
 
-    # For loop to iterate through all the saved test.
-    for tests in saved_tests:
+    if len(saved_tests) < 1:
+        return
+    else:
 
-        # Each test is turned into a list.
-        split = tests.split(',')
+        # For loop to iterate through all the saved test.
+        for tests in saved_tests:
+            # Each test is turned into a list.
+            split = tests.split(',')
 
-        # Lottery_info is taken from the list based on its index.
-        lottery_info = split[4]
+            # Lottery_info is taken from the list based on its index.
+            lottery_info = split[4]
 
-        # Lottery_date is taken from the list based on its index.
-        lottery_date = split[5]
+            # Lottery_date is taken from the list based on its index.
+            lottery_date = split[5]
 
-        # Regex is used to find the name of the lottery of the saved test list info index.
-        lotto_name = re.findall('"([^"]*)"', lottery_info)
+            # Regex is used to find the name of the lottery of the saved test list info index.
+            lotto_name = re.findall('"([^"]*)"', lottery_info)
 
-        # Regex is used to find the date of the lottery of the saved test list date index.
-        lotto_date = re.findall('"([^"]*)"', lottery_date)
+            # Regex is used to find the date of the lottery of the saved test list date index.
+            lotto_date = re.findall('"([^"]*)"', lottery_date)
 
-        # Using a saved future test's details and regex, each saved future test is turned into simple string to be used
-        # as an option for the saved future test dropdown
-        saved_tests_dropdown_options.append(lotto_name[1] + ': ' + lotto_date[1])
+            # Using a saved future test's details and regex, each saved future test is turned into simple string to be
+            # used as an option for the saved future test dropdown
+            saved_tests_dropdown_options.append(lotto_name[1] + ': ' + lotto_date[1])
 
     return saved_tests_dropdown_options
 
@@ -133,7 +134,6 @@ def prepare_future_test(user, selected_future_test):
         test_details = [lotto_name[1], lotto_date[1]]
 
         if selected_test == test_details:
-
             return test
 
 
