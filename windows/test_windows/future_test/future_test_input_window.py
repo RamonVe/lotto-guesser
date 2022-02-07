@@ -11,11 +11,12 @@ from windows.test_windows.test_timer import timer as t
 from windows.window_utillities import lottery_color as lc
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
-import tkinter
+import tkinter as tk
 
 
+# This function creates a future test input window.
 def future_session_input(root_window, selected_lottery, selected_date, user):
-    input_window = tkinter.Toplevel(root_window)
+    input_window = tk.Toplevel(root_window)
     input_window.grid_columnconfigure(0, weight=1)
     input_window.grid_rowconfigure(0, weight=1)
     input_window.iconbitmap(wi.window_icon())
@@ -111,6 +112,7 @@ def future_session_input(root_window, selected_lottery, selected_date, user):
     wp.quit_confirmation(root_window, input_window)
 
 
+# This function passes all the data from the input window and saves the data as an object in a text file list.
 def submit(root_window, current_window, selected_lottery, selected_date, user, timer, item_guess):
     timer.stop()
 
@@ -128,17 +130,6 @@ def submit(root_window, current_window, selected_lottery, selected_date, user, t
     ldu.save_future_test(user, future_test)
 
     messagebox.showinfo('Success!', selected_lottery + ' for ' + selected_date + ' has been saved!')
-
-    # # Console Output
-    # print(selected_lottery)
-    # print(selected_date)
-    # print(time)
-    # print(number_guess)
-    # for number in number_guess:
-    #     print(number.get())
-    # print(item_guess)
-    # for item in item_guess:
-    #     print(item.get())
 
     current_window.destroy()
 

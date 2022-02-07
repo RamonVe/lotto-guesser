@@ -8,6 +8,7 @@ from windows.window_utillities import window_protocol as wp
 import tkinter
 
 
+# This function takes in a saved future test and allows the user to input the correct lottery numbers via window.
 def future_update_number_input(root_window, user, future_test):
     future_test_dict = eval(future_test)
 
@@ -118,16 +119,9 @@ def future_update_number_input(root_window, user, future_test):
     wp.quit_confirmation(root_window, input_window)
 
 
+# This function takes in the winning number input and launches a result window.
 def submit(root_window, current_window, user, time, lottery_name, lottery_date, item_guesses, number_item_pair,
            correct_numbers):
-
-    # print(time)
-    # print(lottery_name)
-    # print(lottery_date)
-    # print(item_guesses)
-    # print(number_item_pair)
-    # for number in correct_numbers:
-    #     print(number.get())
 
     current_window.destroy()
 

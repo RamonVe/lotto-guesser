@@ -5,12 +5,13 @@ from windows import dashboard_window as dw
 from windows.window_utillities import lottery_color as lc
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
-import tkinter
+import tkinter as tk
 
 
+# This function creates a session results window for a saved future test winning numbers update.
 def session_results(root_window, user, time, lottery_name, lottery_date, item_guesses, number_item_pair,
                     correct_numbers):
-    results_window = tkinter.Toplevel(root_window)
+    results_window = tk.Toplevel(root_window)
     results_window.grid_columnconfigure(0, weight=1)
     results_window.grid_rowconfigure(0, weight=1)
     results_window.title('Practice Test Results')
@@ -89,7 +90,7 @@ def session_results(root_window, user, time, lottery_name, lottery_date, item_gu
 
     pairings_text = Text(pairing_frame)
     pairing = "\n".join("{} : {}".format(x, y) for x, y in zip(keys, values))
-    pairings_text.insert(tkinter.END, pairing)
+    pairings_text.insert(tk.END, pairing)
 
     scrollbar = Scrollbar(pairing_frame, orient=VERTICAL)
     pairings_text.config(yscrollcommand=scrollbar.set)
@@ -108,8 +109,6 @@ def session_results(root_window, user, time, lottery_name, lottery_date, item_gu
     geomagnetic_frame.grid_columnconfigure(2, weight=1)
 
     input_frame.grid(row=1, column=1, padx=20, pady=20, sticky=NSEW)
-    # input_frame.grid_rowconfigure(1, weight=1)
-    # input_frame.grid_columnconfigure(1, weight=1)
 
     results_frame.grid(row=2, column=1, padx=20, pady=20, sticky=S)
     results_frame.grid_rowconfigure(2, weight=1)
@@ -155,19 +154,20 @@ def session_results(root_window, user, time, lottery_name, lottery_date, item_gu
     wp.quit_confirmation(root_window, results_window)
 
 
+# This function pairs the winning numbers with the saved randomized number/item pair.
 def correct_item_list(number_item_pair, correct_numbers):
     correct_items = []
     keys = list(number_item_pair.keys())
 
     for n in correct_numbers:
         for key in keys:
-            # print(key)
             if n == key:
                 correct_items.append(number_item_pair.get(key))
 
     return correct_items
 
 
+# This function returns a color as a string for text background.
 def result_background(user_input, correct_item):
     if user_input == correct_item:
         return 'green'
@@ -175,11 +175,13 @@ def result_background(user_input, correct_item):
         return 'red'
 
 
+# This function shows the saved parings of number to items.
 def show_pairings(pairing_frame, show_results):
     show_results.grid_remove()
     pairing_frame.grid(row=4, column=1, padx=20, pady=50)
 
 
+# This function returns to dashboard.
 def dash_board(root_window, current_window, logged_in_user):
     current_window.destroy()
     dw.dashboard_window(root_window, logged_in_user)
