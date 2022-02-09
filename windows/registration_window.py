@@ -129,7 +129,16 @@ def register(root_window, register_window, f_name, l_name, age, location, user_n
 
     # This prevents two users from having the same username.
     for exiting_user in users:
-        if exiting_user.username == user_name_input:
+
+        user_dict = eval(exiting_user)
+        first_name = user_dict.get('first_name')
+        last_name = user_dict.get('last_name')
+        age = user_dict.get('age')
+        location = user_dict.get('location')
+        username = user_dict.get('username')
+        password = user_dict.get('password')
+
+        if username == user_name_input:
             m.showwarning('Duplicate Username!', 'The username you entered has already been taken!')
             return
 
