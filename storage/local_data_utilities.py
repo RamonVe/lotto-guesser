@@ -14,7 +14,7 @@ def save_user(new_user):
 
 # This function loads the user list.
 def load_users():
-    f = open('storage/user_list.txt', 'a+')
+    f = open('storage/user_list.txt', "r")
     users = f.readlines()
 
     return users
