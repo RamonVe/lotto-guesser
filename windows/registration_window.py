@@ -10,7 +10,6 @@ import tkinter as tk
 
 # This function creates a registration window on top of the root window.
 def registration_window(root_window):
-
     # Window details are set.
     register_window = tk.Toplevel(root_window)
     register_window.title('Register')
@@ -101,8 +100,6 @@ def registration_window(root_window):
 
 # This function registers a new user.
 def register(root_window, register_window, f_name, l_name, age, location, user_name, pass_word):
-
-    # Each input needs to be retrieved.
     first_name_input = f_name.get()
     last_name_input = l_name.get()
     age_input = age.get()
@@ -110,7 +107,6 @@ def register(root_window, register_window, f_name, l_name, age, location, user_n
     user_name_input = user_name.get()
     pass_word_input = pass_word.get()
 
-    # A new user object is created and its properties are set to the input.
     new_user = u.User(first_name=first_name_input,
                       last_name=last_name_input,
                       age=age_input,
@@ -118,16 +114,13 @@ def register(root_window, register_window, f_name, l_name, age, location, user_n
                       username=user_name_input,
                       password=pass_word_input)
 
-    # This checks and displays a warning when an input is left empty.
     if first_name_input == '' or last_name_input == '' or age_input == '' or location_input == '' \
             or user_name_input == '' or pass_word_input == '':
         m.showwarning('Empty Field!', 'A field has been left empty!')
         return
 
-    # User list is retrieved to add a new user to it.
     users = ldu.load_users()
 
-    # This prevents two users from having the same username.
     for exiting_user in users:
 
         user_dict = eval(exiting_user)
@@ -137,11 +130,8 @@ def register(root_window, register_window, f_name, l_name, age, location, user_n
             m.showwarning('Duplicate Username!', 'The username you entered has already been taken!')
             return
 
-    # The new user is saved.
     ldu.save_user(new_user)
-    m.showinfo('Success!', user_name_input + ' has been successfully registered!')
 
-    # Return to login window function called.
     return_to_login(root_window, register_window)
 
 
