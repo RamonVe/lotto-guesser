@@ -1,8 +1,10 @@
 # This class creates a future test object.
 class FutureTest:
-    def __init__(self, user, time, lottery_name, lottery_date, item_guesses, number_item_pair):
+    def __init__(self, user, time, kp, bz, lottery_name, lottery_date, item_guesses, number_item_pair):
         self.user = user.user_details_list(),
         self.time = time
+        self.kp = kp,
+        self.bz = bz,
         self.lottery_name = lottery_name,
         self.lottery_date = lottery_date,
         self.item_guesses = item_guesses,
@@ -15,6 +17,14 @@ class FutureTest:
     # Function returns the time associated to the future test.
     def time(self):
         return self.time
+
+    # Function returns recorded Geomagnetic KP of the test at the time it was taken.
+    def kp(self):
+        return self.kp
+
+    # Function returns recorded Geomagnetic BZ of the test at the time it was taken.
+    def bz(self):
+        return self.bz
 
     # Function returns the lottery name associated to the future test.
     def lottery_name(self):
