@@ -1,13 +1,12 @@
-import tkinter as tk
+from entities import user as u
 from tkinter import *
 from tkinter import ttk
-
-from entities import user as u
 from windows.future_test_updates import future_test_update_input_window as ftu
 from windows.test_windows.future_test import future_test_home_window as fth
 from windows.test_windows.practice_test import practice_test_home_window as pth
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
+import tkinter as tk
 
 
 # This function creates a dashboard window for a user after log in.
