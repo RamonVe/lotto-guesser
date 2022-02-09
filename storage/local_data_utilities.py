@@ -1,3 +1,4 @@
+from tkinter import messagebox as m
 import json
 import os
 
@@ -16,6 +17,8 @@ def save_user(new_user):
     with open('storage/future_tests/' + new_user.username + '_future_test_storage.txt',
               'a+') as f:
         f.close()
+
+    m.showinfo('Success!', new_user.username + ' has been successfully registered!')
 
 
 # This function loads the user list.
