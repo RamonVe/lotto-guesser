@@ -73,7 +73,7 @@ def future_session_input(root_window, selected_lottery, selected_date, user):
 
     submit_button = Button(input_frame, text='Save Future Test',
                            command=lambda: submit(root_window, input_window, selected_lottery, selected_date, user,
-                                                  timer, item_guess))
+                                                  timer, kp, bz, item_guess))
 
     time_frame.grid(row=0, column=0, padx=20, sticky=NW)
     time_frame.grid_rowconfigure(0, weight=1)
@@ -113,24 +113,24 @@ def future_session_input(root_window, selected_lottery, selected_date, user):
 
 
 # This function passes all the data from the input window and saves the data as an object in a text file list.
-def submit(root_window, current_window, selected_lottery, selected_date, user, timer, item_guess):
+def submit(root_window, current_window, selected_lottery, selected_date, user, timer, kp, bz, item_guess):
 
     for item in item_guess:
         if item.get() == 'Select an item.':
             m.showwarning('Item not selected!', 'An item was not selected!')
             return
 
-    success(current_window, item_guess, root_window, selected_date, selected_lottery, timer, user)
+    success(current_window, item_guess, root_window, selected_date, selected_lottery, timer, kp, bz, user)
 
 
-def success(current_window, item_guess, root_window, selected_date, selected_lottery, timer, user):
+def success(current_window, item_guess, root_window, selected_date, selected_lottery, timer, kp, bz, user):
     timer.stop()
     time = timer.time_as_string
     serializable_item_guess = []
     for item in item_guess:
         serializable_item_guess.append(item.get())
     random_number_item_pair = ir.random_pair()
-    future_test = fu.FutureTest(user, time, selected_lottery, selected_date, serializable_item_guess,
+    future_test = fu.FutureTest(user, time, kp, bz, selected_lottery, selected_date, serializable_item_guess,
                                 random_number_item_pair)
     ldu.save_future_test(user, future_test)
     m.showinfo('Success!', selected_lottery + ' for ' + selected_date + ' has been saved!')
