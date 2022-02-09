@@ -8,8 +8,14 @@ def save_user(new_user):
         json_user = json.dumps(new_user.__dict__)
         file.write(str(json_user) + '\n')
 
-        with open('storage/future_tests/' + new_user.username + '_future_test_storage.txt', 'a') as f:
-            f.write('')
+    with open(
+            'storage/practice_tests/' + new_user.username + '_practice_test_storage.txt',
+            'a+') as f:
+        f.close()
+
+    with open('storage/future_tests/' + new_user.username + '_future_test_storage.txt',
+              'a+') as f:
+        f.close()
 
 
 # This function loads the user list.
@@ -24,6 +30,12 @@ def load_users():
 # Currently, this function is not implemented.
 def delete_users():
     os.remove('storage/user_list.txt')
+
+
+def save_practice_test(user, practice_test):
+    with open('storage/practice_tests/' + user.username + '_practice_test_storage.txt', 'a') as f:
+        json_practice_test = json.dumps(practice_test.__dict__)
+        f.write(str(json_practice_test) + '\n')
 
 
 # This function saves a future test for the logged-in user.
