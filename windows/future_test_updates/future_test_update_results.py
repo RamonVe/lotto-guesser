@@ -1,6 +1,8 @@
 from tkinter import *
+from entities import future_test_results as ftr
 from entities import user as u
 from geomagnetic_data import geomagnetic_retrieval as gr
+from storage import local_data_utilities as ldu
 from windows import dashboard_window as dw
 from windows.window_utillities import lottery_color as lc
 from windows.window_utillities import window_icon as wi
@@ -66,6 +68,8 @@ def session_results(root_window, user, time, lottery_name, lottery_date, item_gu
     correct_item_four = correct_items[3]
     correct_item_five = correct_items[4]
 
+    correct_amount = results(correct_items, item_guesses)
+
     first_color_results_label = Label(results_frame, text='Ball 1: ' + number_one + '-' + correct_item_one,
                                       background=result_background(guess_one, correct_item_one), font="Times 12 bold")
     second_color_results_label = Label(results_frame, text='Ball 2: ' + number_two + '-' + correct_item_two,
@@ -80,7 +84,10 @@ def session_results(root_window, user, time, lottery_name, lottery_date, item_gu
                                       background=result_background(guess_five, correct_item_five), font="Times 12 bold")
 
     dash_button = Button(results_window, text='Return to Dashboard',
-                         command=lambda: dash_board(root_window, results_window, user), font="Times 12 bold")
+                         command=lambda: dash_board(root_window, results_window, user, time, kp, bz, lottery_name,
+                                                    lottery_date, item_guesses, number_item_pair, winning_numbers,
+                                                    correct_amount),
+                         font="Times 12 bold")
 
     show_results = Button(results_window, text='Show ball/item pairings?',
                           command=lambda: show_pairings(pairing_frame, show_results), font="Times 12 bold")
@@ -181,7 +188,31 @@ def show_pairings(pairing_frame, show_results):
     pairing_frame.grid(row=4, column=1, padx=20, pady=50)
 
 
+def results(correct_items, item_guess_input):
+    correct = 0
+    if correct_items[0] == item_guess_input[0]:
+        correct += 1
+    if correct_items[1] == item_guess_input[1]:
+        correct += 1
+    if correct_items[2] == item_guess_input[2]:
+        correct += 1
+    if correct_items[3] == item_guess_input[3]:
+        correct += 1
+    if correct_items[4] == item_guess_input[4]:
+        correct += 1
+    return correct
+
+
 # This function returns to dashboard.
-def dash_board(root_window, current_window, logged_in_user):
+def dash_board(root_window, current_window, logged_in_user, time, kp, bz, lottery_name, lottery_date, item_guesses,
+               number_item_pair, winning_numbers, correct_guesses):
+    future_test = ftr.FutureTestResults(logged_in_user, time, kp, bz, lottery_name, lottery_date,
+                                        item_guesses,
+                                        number_item_pair, winning_numbers,
+                                        correct_guesses)
+
+    ldu.save_future_test_results(logged_in_user, future_test)
+
     current_window.destroy()
+
     dw.dashboard_window(root_window, logged_in_user)
