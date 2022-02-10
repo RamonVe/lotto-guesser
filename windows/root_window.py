@@ -1,4 +1,5 @@
 from windows import login_window as lw
+from windows.window_utillities import window_icon as wi
 import tkinter as tk
 
 
@@ -7,6 +8,8 @@ import tkinter as tk
 def initialize_ui():
     # A root window is created using the Tkinter library.
     root_window = tk.Tk()
+
+    root_window.iconbitmap(wi.window_icon())
 
     # The root window is hidden and all other windows will be placed on top the root window.
     root_window.withdraw()
