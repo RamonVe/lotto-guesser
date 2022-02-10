@@ -1,3 +1,4 @@
+from entities import user as u
 from tkinter import *
 from tkinter import messagebox as m
 from storage import local_data_utilities as ldu
@@ -69,41 +70,41 @@ def login_window(root_window):
 
 # This function validates a user's entered username and password to log in.
 def validate_login(username, password, root_window, log_window):
-
     # Variables to store input are created.
-    user_name = username.get()
-    pass_word = password.get()
+    user_input = username.get()
+    pass_input = password.get()
 
     # A list of users is loaded.
     users = ldu.load_users()
 
     # This for loop iterates through all users to validate user input to log in.
     for user in users:
+        user_dict = eval(user)
+        first_name = user_dict.get('first_name')
+        last_name = user_dict.get('last_name')
+        age = user_dict.get('age')
+        location = user_dict.get('location')
+        username = user_dict.get('username')
+        password = user_dict.get('password')
 
-        # First we check if an entered username matches with any usernames from the loaded user list.
-        if user.username == user_name:
-
-            # Next we check if the entered password matches the saved password of a user whose username matches
-            # the input.
-            if user.password != pass_word:
+        if user_input == username:
+            if pass_input != password:
                 m.showwarning('Wrong Password!', 'You have entered the wrong password, try again!')
-            else:
+                break
 
+            elif pass_input == password:
                 # If both entered username and password match a user's username and password from the user list
                 # The login window is destroyed and a dashboard window is placed on top of the root window.
                 log_window.destroy()
-                dashboard(root_window, user)
+                logged_in_user = u.User(first_name, last_name, age, location, username, password)
+                dashboard(root_window, logged_in_user)
                 break
+    else:
+        if user_input == '' and pass_input == '':
+            m.showwarning('Empty Fields!', 'Enter a username and password to log in!')
         else:
-
-            # Warning box is displayed if input is empty.
-            if user_name == '' and pass_word == '':
-                m.showwarning('Empty Fields!', 'Enter a username and password to log in!')
-            else:
-
-                # Warning box is displayed if a username does not match any of the usernames of the user list.
-                m.showwarning('No user found!', 'No user with that username found, try again!')
-                break
+            # Warning box is displayed if a username does not match any of the usernames of the user list.
+            m.showwarning('No user found!', 'No user with that username found, try again!')
 
 
 # This function creates a registration window by destroying the login window and calling a function to create a

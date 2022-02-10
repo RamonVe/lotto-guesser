@@ -1,12 +1,12 @@
 from entities import user as u
 from tkinter import *
+from tkinter import messagebox as m
 from tkinter import ttk
 from windows.future_test_updates import future_test_update_input_window as ftu
 from windows.test_windows.future_test import future_test_home_window as fth
 from windows.test_windows.practice_test import practice_test_home_window as pth
 from windows.window_utillities import window_icon as wi
 from windows.window_utillities import window_protocol as wp
-import re
 import tkinter as tk
 
 
@@ -23,6 +23,7 @@ def dashboard_window(root_window, user):
     practice_frame = LabelFrame(parent_frame)
     future_frame = LabelFrame(parent_frame)
     saved_tests_frame = LabelFrame(dash_window)
+    totals_frame = LabelFrame(dash_window)
 
     # Buttons are created and have the functionality to start either a practice test or future test.
     practice_button = Button(practice_frame, text='Start A Practice Test', width=20,
@@ -47,11 +48,18 @@ def dashboard_window(root_window, user):
                            command=lambda: submit(root_window, dash_window, user,
                                                   selected_future_test.get()))
 
+    totals_label = Label(totals_frame, text='Stats:', font='Times 12 bold')
+    practice_totals = Label(totals_frame, text='Practice Tests: Total Tests Taken: ' + practice_tests_total(user),
+                            font='Times 12 bold')
+    future_totals = Label(totals_frame, text='Future Tests: Total Tests Taken: ' + future_tests_total(user),
+                          font='Times 12 bold')
+
     # Frames are packed into the dashboard window.
     parent_frame.pack()
     practice_frame.pack(side='left', padx=10)
     future_frame.pack(side='right', padx=10)
     saved_tests_frame.pack(pady=20)
+    totals_frame.pack(padx=10, pady=10)
 
     # Widgets are packed into their frames.
     practice_button.pack()
@@ -59,6 +67,9 @@ def dashboard_window(root_window, user):
     saved_tests_label.pack()
     saved_tests_dropdown.pack()
     update_button.pack()
+    totals_label.pack()
+    practice_totals.pack()
+    future_totals.pack()
 
     # This function prevents a user from accidentally closing the application when the close button is pressed.
     wp.quit_confirmation(root_window, dash_window)
@@ -87,30 +98,18 @@ def get_saved_future_tests(user):
     # Empty list to hold the options of saved future tests is created.
     saved_tests_dropdown_options = []
 
-    if len(saved_tests) < 1:
-        return
-    else:
+    # For loop to iterate through all the saved test.
+    for test in saved_tests:
+        saved_test_dict = eval(test)
 
-        # For loop to iterate through all the saved test.
-        for tests in saved_tests:
-            # Each test is turned into a list.
-            split = tests.split(',')
+        lottery_name_list = saved_test_dict.get('lottery_name')
+        lottery_name = lottery_name_list[0]
+        lottery_date_list = saved_test_dict.get('lottery_date')
+        lottery_date = lottery_date_list[0]
 
-            # Lottery_info is taken from the list based on its index.
-            lottery_info = split[4]
-
-            # Lottery_date is taken from the list based on its index.
-            lottery_date = split[5]
-
-            # Regex is used to find the name of the lottery of the saved test list info index.
-            lotto_name = re.findall('"([^"]*)"', lottery_info)
-
-            # Regex is used to find the date of the lottery of the saved test list date index.
-            lotto_date = re.findall('"([^"]*)"', lottery_date)
-
-            # Using a saved future test's details and regex, each saved future test is turned into simple string to be
-            # used as an option for the saved future test dropdown
-            saved_tests_dropdown_options.append(lotto_name[1] + ': ' + lotto_date[1])
+        # Using a saved future test's details and regex, each saved future test is turned into simple string to be used
+        # as an option for the saved future test dropdown
+        saved_tests_dropdown_options.append(lottery_name + ': ' + lottery_date)
 
     return saved_tests_dropdown_options
 
@@ -123,15 +122,32 @@ def prepare_future_test(user, selected_future_test):
     f = open('storage/future_tests/' + user.username + '_future_test_storage.txt', 'r')
     saved_tests = f.readlines()
 
+    g = open('storage/future_tests/' + user.username + '_future_test_results_storage.txt', 'r')
+    saved_results = g.readlines()
+
+    for results in saved_results:
+        saved_results_dict = eval(results)
+
+        lottery_name_list = saved_results_dict.get('lottery_name')
+        lottery_name = lottery_name_list[0]
+        lottery_date_list = saved_results_dict.get('lottery_date')
+        lottery_date = lottery_date_list[0]
+
+        results_details = [lottery_name, lottery_date]
+
+        if selected_test == results_details:
+            m.showwarning('Test Already Updated!', 'This test has already been updated!')
+            return
+
     for test in saved_tests:
-        split_test = test.split(',')
-        lottery_info = split_test[4]
-        lottery_date = split_test[5]
+        saved_test_dict = eval(test)
 
-        lotto_name = re.findall('"([^"]*)"', lottery_info)
-        lotto_date = re.findall('"([^"]*)"', lottery_date)
+        lottery_name_list = saved_test_dict.get('lottery_name')
+        lottery_name = lottery_name_list[0]
+        lottery_date_list = saved_test_dict.get('lottery_date')
+        lottery_date = lottery_date_list[0]
 
-        test_details = [lotto_name[1], lotto_date[1]]
+        test_details = [lottery_name, lottery_date]
 
         if selected_test == test_details:
             return test
@@ -142,6 +158,63 @@ def prepare_future_test(user, selected_future_test):
 def submit(root_window, current_window, user, selected_future_test):
     prepared_future_test = prepare_future_test(user, selected_future_test)
 
+    if prepared_future_test is None:
+        return
+
     current_window.destroy()
 
     ftu.future_update_number_input(root_window, user, prepared_future_test)
+
+
+def practice_tests_total(user):
+    # File is found via its location and username.
+    f = open('storage/practice_tests/' + user.username + '_practice_test_storage.txt', 'r')
+
+    # The open file is converted into a list of saved future tests.
+    saved_tests = f.readlines()
+
+    correct_amount = 0
+    for test in saved_tests:
+        test_dict = eval(test)
+        correct_guesses_for_test = test_dict.get('correct_guesses')
+        correct_amount += correct_guesses_for_test
+
+    total_tests_taken = len(saved_tests)
+
+    total_tests_taken_string = str(total_tests_taken)
+
+    try:
+        average = correct_amount / total_tests_taken
+    except ZeroDivisionError:
+        return ''
+
+    average_string = str(average)
+
+    return total_tests_taken_string + ', Correct Total Guesses: ' + str(correct_amount) + ', Average: ' + average_string
+
+
+def future_tests_total(user):
+    # File is found via its location and username.
+    f = open('storage/future_tests/' + user.username + '_future_test_results_storage.txt', 'r')
+
+    # The open file is converted into a list of saved future tests.
+    saved_tests = f.readlines()
+
+    correct_amount = 0
+    for test in saved_tests:
+        test_dict = eval(test)
+        correct_guesses_for_test = test_dict.get('correct_guesses')
+        correct_amount += correct_guesses_for_test
+
+    total_tests_taken = len(saved_tests)
+
+    total_tests_taken_string = str(total_tests_taken)
+
+    try:
+        average = correct_amount / total_tests_taken
+    except ZeroDivisionError:
+        return ''
+
+    average_string = str(average)
+
+    return total_tests_taken_string + ', Correct Total Guesses: ' + str(correct_amount) + ', Average: ' + average_string

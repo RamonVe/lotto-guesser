@@ -1,14 +1,17 @@
-# This class creates a future test object.
-class FutureTest:
-    def __init__(self, user, time, kp, bz, lottery_name, lottery_date, item_guesses, number_item_pair):
+# This class creates a practice test object.
+class PracticeTest:
+    def __init__(self, user, time, kp, bz, lottery_name, lottery_date, winning_numbers, item_guesses, number_item_pair,
+                 correct_guesses):
         self.user = user.user_details_list(),
         self.time = time
         self.kp = kp,
         self.bz = bz,
         self.lottery_name = lottery_name,
         self.lottery_date = lottery_date,
+        self.winning_numbers = winning_numbers,
         self.item_guesses = item_guesses,
         self.number_item_pair = number_item_pair
+        self.correct_guesses = correct_guesses
 
     # Function returns the user associated to the future test as a list.
     def user(self):
@@ -34,6 +37,9 @@ class FutureTest:
     def lottery_date(self):
         return self.lottery_date
 
+    def winning_numbers(self):
+        return self.winning_numbers
+
     # Function returns the item guesses associated to the future test.
     def item_guesses(self):
         return self.item_guesses
@@ -41,3 +47,6 @@ class FutureTest:
     # Function returns the random number item pair generated associated to the future test.
     def number_item_pair(self):
         return self.number_item_pair
+
+    def correct_guesses(self):
+        return self.correct_guesses
