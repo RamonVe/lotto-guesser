@@ -9,13 +9,10 @@ def save_user(new_user):
         json_user = json.dumps(new_user.__dict__)
         file.write(str(json_user) + '\n')
 
-    with open(
-            'storage/practice_tests/' + new_user.username + '_practice_test_storage.txt',
-            'a+') as f:
+    with open('storage/practice_tests/' + new_user.username + '_practice_test_storage.txt', 'a+') as f:
         f.close()
 
-    with open('storage/future_tests/' + new_user.username + '_future_test_storage.txt',
-              'a+') as f:
+    with open('storage/future_tests/' + new_user.username + '_future_test_storage.txt', 'a+') as f:
         f.close()
 
     with open('storage/future_tests/' + new_user.username + '_future_test_results_storage.txt', 'a+') as f:
@@ -56,4 +53,3 @@ def save_future_test_results(user, future_test):
     with open('storage/future_tests/' + user.username + '_future_test_results_storage.txt', 'a') as f:
         json_future_test = json.dumps(future_test.__dict__)
         f.write(str(json_future_test) + '\n')
-

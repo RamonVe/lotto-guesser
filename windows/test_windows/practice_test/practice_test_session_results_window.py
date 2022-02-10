@@ -215,8 +215,7 @@ def dash_board(root_window, current_window, logged_in_user, time, kp, bz, lotter
     for item in item_guesses:
         serializable_item_guess.append(item.get())
 
-    practice_test = pt.PracticeTest(logged_in_user, time, kp, bz, lottery_name, lottery_date,
-                                    winning_numbers,
+    practice_test = pt.PracticeTest(logged_in_user, time, kp, bz, lottery_name, lottery_date, winning_numbers,
                                     serializable_item_guess, random_number_item_pair, correct_guesses)
 
     save_test(logged_in_user, practice_test)

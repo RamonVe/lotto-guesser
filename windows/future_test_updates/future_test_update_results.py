@@ -206,10 +206,8 @@ def results(correct_items, item_guess_input):
 # This function returns to dashboard.
 def dash_board(root_window, current_window, logged_in_user, time, kp, bz, lottery_name, lottery_date, item_guesses,
                number_item_pair, winning_numbers, correct_guesses):
-    future_test = ftr.FutureTestResults(logged_in_user, time, kp, bz, lottery_name, lottery_date,
-                                        item_guesses,
-                                        number_item_pair, winning_numbers,
-                                        correct_guesses)
+    future_test = ftr.FutureTestResults(logged_in_user, time, kp, bz, lottery_name, lottery_date, item_guesses,
+                                        number_item_pair, winning_numbers, correct_guesses)
 
     ldu.save_future_test_results(logged_in_user, future_test)
 
