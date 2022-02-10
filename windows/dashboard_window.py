@@ -23,6 +23,7 @@ def dashboard_window(root_window, user):
     practice_frame = LabelFrame(parent_frame)
     future_frame = LabelFrame(parent_frame)
     saved_tests_frame = LabelFrame(dash_window)
+    totals_frame = LabelFrame(dash_window)
 
     # Buttons are created and have the functionality to start either a practice test or future test.
     practice_button = Button(practice_frame, text='Start A Practice Test', width=20,
@@ -47,11 +48,18 @@ def dashboard_window(root_window, user):
                            command=lambda: submit(root_window, dash_window, user,
                                                   selected_future_test.get()))
 
+    totals_label = Label(totals_frame, text='Stats:', font='Times 12 bold')
+    practice_totals = Label(totals_frame, text='Practice Tests: Total Tests Taken: ' + practice_tests_total(user),
+                            font='Times 12 bold')
+    future_totals = Label(totals_frame, text='Future Tests: Total Tests Taken: ' + future_tests_total(user),
+                          font='Times 12 bold')
+
     # Frames are packed into the dashboard window.
     parent_frame.pack()
     practice_frame.pack(side='left', padx=10)
     future_frame.pack(side='right', padx=10)
     saved_tests_frame.pack(pady=20)
+    totals_frame.pack(padx=10, pady=10)
 
     # Widgets are packed into their frames.
     practice_button.pack()
@@ -59,6 +67,9 @@ def dashboard_window(root_window, user):
     saved_tests_label.pack()
     saved_tests_dropdown.pack()
     update_button.pack()
+    totals_label.pack()
+    practice_totals.pack()
+    future_totals.pack()
 
     # This function prevents a user from accidentally closing the application when the close button is pressed.
     wp.quit_confirmation(root_window, dash_window)
@@ -153,3 +164,57 @@ def submit(root_window, current_window, user, selected_future_test):
     current_window.destroy()
 
     ftu.future_update_number_input(root_window, user, prepared_future_test)
+
+
+def practice_tests_total(user):
+    # File is found via its location and username.
+    f = open('storage/practice_tests/' + user.username + '_practice_test_storage.txt', 'r')
+
+    # The open file is converted into a list of saved future tests.
+    saved_tests = f.readlines()
+
+    correct_amount = 0
+    for test in saved_tests:
+        test_dict = eval(test)
+        correct_guesses_for_test = test_dict.get('correct_guesses')
+        correct_amount += correct_guesses_for_test
+
+    total_tests_taken = len(saved_tests)
+
+    total_tests_taken_string = str(total_tests_taken)
+
+    try:
+        average = correct_amount / total_tests_taken
+    except ZeroDivisionError:
+        return ''
+
+    average_string = str(average)
+
+    return total_tests_taken_string + ', Correct Total Guesses: ' + str(correct_amount) + ', Average: ' + average_string
+
+
+def future_tests_total(user):
+    # File is found via its location and username.
+    f = open('storage/future_tests/' + user.username + '_future_test_results_storage.txt', 'r')
+
+    # The open file is converted into a list of saved future tests.
+    saved_tests = f.readlines()
+
+    correct_amount = 0
+    for test in saved_tests:
+        test_dict = eval(test)
+        correct_guesses_for_test = test_dict.get('correct_guesses')
+        correct_amount += correct_guesses_for_test
+
+    total_tests_taken = len(saved_tests)
+
+    total_tests_taken_string = str(total_tests_taken)
+
+    try:
+        average = correct_amount / total_tests_taken
+    except ZeroDivisionError:
+        return ''
+
+    average_string = str(average)
+
+    return total_tests_taken_string + ', Correct Total Guesses: ' + str(correct_amount) + ', Average: ' + average_string
