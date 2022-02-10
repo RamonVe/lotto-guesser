@@ -138,19 +138,19 @@ def prepare_future_test(user, selected_future_test):
         if selected_test == results_details:
             m.showwarning('Test Already Updated!', 'This test has already been updated!')
             return
-        else:
-            for test in saved_tests:
-                saved_test_dict = eval(test)
 
-                lottery_name_list = saved_test_dict.get('lottery_name')
-                lottery_name = lottery_name_list[0]
-                lottery_date_list = saved_test_dict.get('lottery_date')
-                lottery_date = lottery_date_list[0]
+    for test in saved_tests:
+        saved_test_dict = eval(test)
 
-                test_details = [lottery_name, lottery_date]
+        lottery_name_list = saved_test_dict.get('lottery_name')
+        lottery_name = lottery_name_list[0]
+        lottery_date_list = saved_test_dict.get('lottery_date')
+        lottery_date = lottery_date_list[0]
 
-                if selected_test == test_details:
-                    return test
+        test_details = [lottery_name, lottery_date]
+
+        if selected_test == test_details:
+            return test
 
 
 # This function calls prepare_future_test to pass the selected future test to be updated in the future update number
