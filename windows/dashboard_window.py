@@ -1,5 +1,6 @@
 from entities import user as u
 from tkinter import *
+from tkinter import messagebox as m
 from tkinter import ttk
 from windows.future_test_updates import future_test_update_input_window as ftu
 from windows.test_windows.future_test import future_test_home_window as fth
@@ -110,24 +111,44 @@ def prepare_future_test(user, selected_future_test):
     f = open('storage/future_tests/' + user.username + '_future_test_storage.txt', 'r')
     saved_tests = f.readlines()
 
-    for test in saved_tests:
-        saved_test_dict = eval(test)
+    g = open('storage/future_tests/' + user.username + '_future_test_results_storage.txt', 'r')
+    saved_results = g.readlines()
 
-        lottery_name_list = saved_test_dict.get('lottery_name')
+    for results in saved_results:
+        saved_results_dict = eval(results)
+
+        lottery_name_list = saved_results_dict.get('lottery_name')
         lottery_name = lottery_name_list[0]
-        lottery_date_list = saved_test_dict.get('lottery_date')
+        lottery_date_list = saved_results_dict.get('lottery_date')
         lottery_date = lottery_date_list[0]
 
-        test_details = [lottery_name, lottery_date]
+        results_details = [lottery_name, lottery_date]
 
-        if selected_test == test_details:
-            return test
+        if selected_test == results_details:
+            m.showwarning('Test Already Updated!', 'This test has already been updated!')
+            return
+        else:
+            for test in saved_tests:
+                saved_test_dict = eval(test)
+
+                lottery_name_list = saved_test_dict.get('lottery_name')
+                lottery_name = lottery_name_list[0]
+                lottery_date_list = saved_test_dict.get('lottery_date')
+                lottery_date = lottery_date_list[0]
+
+                test_details = [lottery_name, lottery_date]
+
+                if selected_test == test_details:
+                    return test
 
 
 # This function calls prepare_future_test to pass the selected future test to be updated in the future update number
 # input.
 def submit(root_window, current_window, user, selected_future_test):
     prepared_future_test = prepare_future_test(user, selected_future_test)
+
+    if prepared_future_test is None:
+        return
 
     current_window.destroy()
 
