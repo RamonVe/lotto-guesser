@@ -55,11 +55,11 @@ def future_update_number_input(root_window, user, future_test):
                               background=lc.color(lottery_name), foreground=lc.text_color(lottery_name),
                               font='Times 12 bold')
 
-    number_one = StringVar()
-    number_two = StringVar()
-    number_three = StringVar()
-    number_four = StringVar()
-    number_five = StringVar()
+    number_one = IntVar()
+    number_two = IntVar()
+    number_three = IntVar()
+    number_four = IntVar()
+    number_five = IntVar()
 
     first_number_entry = Entry(input_frame, textvariable=number_one)
     second_number_entry = Entry(input_frame, textvariable=number_two)
@@ -125,11 +125,15 @@ def submit(root_window, current_window, user, time, lottery_name, lottery_date, 
            correct_numbers):
 
     for number in correct_numbers:
-        if int(number.get()) > 77:
+        if number.get() > 77:
             m.showwarning('Number too high!', 'A number you entered is past 77!')
             return
 
-    success(correct_numbers, current_window, item_guesses, lottery_date, lottery_name, number_item_pair, root_window,
+    correct_numbers_for_results = []
+    for number in correct_numbers:
+        correct_numbers_for_results.append(str(number.get()))
+
+    success(correct_numbers_for_results, current_window, item_guesses, lottery_date, lottery_name, number_item_pair, root_window,
             time, user)
 
 

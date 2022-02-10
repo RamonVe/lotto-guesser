@@ -45,11 +45,11 @@ def session_results(root_window, user, time, lottery_name, lottery_date, item_gu
     guess_four = item_guesses[3]
     guess_five = item_guesses[4]
 
-    number_one = correct_numbers[0].get()
-    number_two = correct_numbers[1].get()
-    number_three = correct_numbers[2].get()
-    number_four = correct_numbers[3].get()
-    number_five = correct_numbers[4].get()
+    number_one = correct_numbers[0]
+    number_two = correct_numbers[1]
+    number_three = correct_numbers[2]
+    number_four = correct_numbers[3]
+    number_five = correct_numbers[4]
 
     winning_numbers = [number_one, number_two, number_three, number_four, number_five]
 
